@@ -11,7 +11,8 @@ interface CompanyDetailsDrawerProps {
 }
 
 export default function CompanyDetailsDrawer({ account, onClose }: CompanyDetailsDrawerProps) {
-  const { signals, offer } = useSignalScout();
+  const { signals, offer, credits, setCredits, userRole } = useSignalScout();
+  const isMarketing = userRole === "marketing";
   const [isGenerating, setIsGenerating] = useState(false);
   const [aiResponse, setAiResponse] = useState<string | null>(null);
   const [copySuccess, setCopySuccess] = useState(false);
@@ -162,9 +163,11 @@ ${promptText ? `[Note: Custom instruction: "${promptText}"]` : ""}`;
   };
 
   const handleGenerateOutreach = () => {
+    if (isMarketing || credits <= 0) return;
     setIsGenerating(true);
     setAiResponse(null);
     setLoadingStep("Scanning target company technographics...");
+    setCredits(credits - 1);
 
     setTimeout(() => {
       setLoadingStep("Identifying Buying Committee champion...");
@@ -369,138 +372,164 @@ ${promptText ? `[Note: Custom instruction: "${promptText}"]` : ""}`;
                 </p>
               </div>
             </div>
-          </div>
-
-          {/* AI Outreach Copilot Panel */}
+              {/* AI Outreach Copilot Panel */}
           <div className="border-t border-zinc-900 pt-6 space-y-4">
-            <div className="flex items-center space-x-2 text-zinc-350 pb-2 border-b border-zinc-900">
-              <Sparkles className="w-4 h-4 text-violet-400 animate-pulse" />
-              <h3 className="text-xs font-bold uppercase tracking-wider text-white font-outfit">AI Outreach Copilot</h3>
-            </div>
-
-            {/* Select Channel */}
-            <div>
-              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block mb-2">Select Channel</span>
-              <div className="grid grid-cols-3 gap-1.5">
-                <button
-                  onClick={() => { setChannel("email"); setAiResponse(null); }}
-                  className={`py-2 px-3 border rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition cursor-pointer ${
-                    channel === "email" 
-                      ? "bg-violet-950/20 border-violet-900/60 text-violet-400" 
-                      : "bg-zinc-950 border-zinc-900 text-zinc-550 hover:border-zinc-800 hover:text-zinc-300"
-                  }`}
-                >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>Email</span>
-                </button>
-                <button
-                  onClick={() => { setChannel("linkedin"); setAiResponse(null); }}
-                  className={`py-2 px-3 border rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition cursor-pointer ${
-                    channel === "linkedin" 
-                      ? "bg-violet-950/20 border-violet-900/60 text-violet-400" 
-                      : "bg-zinc-950 border-zinc-900 text-zinc-550 hover:border-zinc-800 hover:text-zinc-300"
-                  }`}
-                >
-                  <MessageSquare className="w-3.5 h-3.5" />
-                  <span>LinkedIn</span>
-                </button>
-                <button
-                  onClick={() => { setChannel("call"); setAiResponse(null); }}
-                  className={`py-2 px-3 border rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition cursor-pointer ${
-                    channel === "call" 
-                      ? "bg-violet-950/20 border-violet-900/60 text-violet-400" 
-                      : "bg-zinc-950 border-zinc-900 text-zinc-550 hover:border-zinc-800 hover:text-zinc-300"
-                  }`}
-                >
-                  <PhoneCall className="w-3.5 h-3.5" />
-                  <span>Call Script</span>
-                </button>
+            <div className="flex items-center justify-between pb-2 border-b border-zinc-900">
+              <div className="flex items-center space-x-2 text-zinc-350">
+                <Sparkles className="w-4 h-4 text-violet-400 animate-pulse" />
+                <h3 className="text-xs font-bold uppercase tracking-wider text-white font-outfit">AI Outreach Copilot</h3>
+              </div>
+              <div className="flex items-center space-x-1">
+                <span className="text-[9px] font-mono text-zinc-550 uppercase">Limit:</span>
+                <span className={`px-2 py-0.5 rounded font-mono text-[9px] font-bold ${credits > 0 ? "bg-zinc-900 text-violet-400" : "bg-red-950/40 border border-red-900/30 text-red-400"}`}>
+                  {credits} / 5 req/min
+                </span>
               </div>
             </div>
 
-            {/* Select Tone */}
-            <div>
-              <span className="text-[10px] font-bold text-zinc-550 uppercase tracking-wider block mb-2">Outreach Tone</span>
-              <div className="grid grid-cols-4 gap-1">
-                {(["professional", "friendly", "bold", "value"] as const).map((t) => (
-                  <button
-                    key={t}
-                    onClick={() => { setTone(t); setAiResponse(null); }}
-                    className={`py-1.5 border rounded-lg text-[9px] font-bold uppercase tracking-wider transition capitalize cursor-pointer ${
-                      tone === t 
-                        ? "bg-zinc-900 border-zinc-700 text-white" 
-                        : "bg-zinc-950 border-zinc-900/50 text-zinc-500 hover:text-zinc-350 hover:bg-zinc-900/20"
-                    }`}
-                  >
-                    {t}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Additional Custom Prompts */}
-            <div>
-              <label htmlFor="custom-prompt" className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block mb-2">Additional Instructions / Context</label>
-              <textarea
-                id="custom-prompt"
-                rows={2}
-                value={customPrompt}
-                onChange={(e) => setCustomPrompt(e.target.value)}
-                placeholder="e.g. Keep under 80 words, mention competitor is Stripe, focus on database caching speed..."
-                className="w-full bg-zinc-955 border border-zinc-900 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-violet-500/60 focus:ring-1 focus:ring-violet-500/60 transition resize-none bg-zinc-950"
-              />
-            </div>
-
-            {/* Generate Trigger */}
-            <button
-              onClick={handleGenerateOutreach}
-              disabled={isGenerating}
-              className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white font-semibold text-xs py-3 rounded-xl flex items-center justify-center space-x-2 transition shadow-lg shadow-violet-600/10 font-outfit cursor-pointer"
-            >
-              {isGenerating ? (
-                <Loader2 className="w-4 h-4 shrink-0 animate-spin" />
-              ) : (
-                <Sparkles className="w-4 h-4 shrink-0" />
-              )}
-              <span>{isGenerating ? "AI Outreach Agent working..." : "Generate AI Outreach Copy"}</span>
-            </button>
-
-            {/* Simulated Agent progress */}
-            {isGenerating && (
-              <div className="p-4 bg-zinc-950 border border-zinc-900 rounded-xl flex items-center space-x-3 text-xs text-zinc-400">
-                <Loader2 className="w-4 h-4 text-violet-500 animate-spin shrink-0" />
-                <span className="animate-pulse font-medium">{loadingStep}</span>
-              </div>
-            )}
-
-            {/* Response Display Box */}
-            {aiResponse && !isGenerating && (
-              <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-4 relative group">
-                <div className="flex justify-between items-center mb-2.5 pb-2 border-b border-zinc-900">
-                  <span className="text-[9px] font-bold text-violet-400 uppercase tracking-wider block">AI Generated Outbound Copy</span>
-                  <button
-                    onClick={handleCopyEmail}
-                    className="text-[10px] text-zinc-400 hover:text-white font-semibold transition cursor-pointer flex items-center space-x-1"
-                  >
-                    {copySuccess ? (
-                      <>
-                        <Check className="w-3.5 h-3.5 text-emerald-400" />
-                        <span className="text-emerald-400">Copied!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Clipboard className="w-3.5 h-3.5" />
-                        <span>Copy</span>
-                      </>
-                    )}
-                  </button>
+            {isMarketing ? (
+              <div className="p-4 bg-red-950/20 border border-red-900/35 text-red-400 rounded-xl flex items-start space-x-3 text-xs leading-normal">
+                <Shield className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold block uppercase tracking-wide mb-0.5">Access Restricted</span>
+                  <span>AI outreach response generation is restricted to Sales and GTM Administrator roles. Switch your role in the navigation bar to proceed.</span>
                 </div>
-                <pre className="text-[11px] text-zinc-350 leading-relaxed font-mono whitespace-pre-wrap break-words">
-                  {aiResponse}
-                </pre>
               </div>
+            ) : (
+              <>
+                {/* Select Channel */}
+                <div>
+                  <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block mb-2">Select Channel</span>
+                  <div className="grid grid-cols-3 gap-1.5">
+                    <button
+                      onClick={() => { setChannel("email"); setAiResponse(null); }}
+                      className={`py-2 px-3 border rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition cursor-pointer ${
+                        channel === "email" 
+                          ? "bg-violet-950/20 border-violet-900/60 text-violet-400" 
+                          : "bg-zinc-950 border-zinc-900 text-zinc-550 hover:border-zinc-800 hover:text-zinc-300"
+                      }`}
+                    >
+                      <Send className="w-3.5 h-3.5" />
+                      <span>Email</span>
+                    </button>
+                    <button
+                      onClick={() => { setChannel("linkedin"); setAiResponse(null); }}
+                      className={`py-2 px-3 border rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition cursor-pointer ${
+                        channel === "linkedin" 
+                          ? "bg-violet-950/20 border-violet-900/60 text-violet-400" 
+                          : "bg-zinc-950 border-zinc-900 text-zinc-550 hover:border-zinc-800 hover:text-zinc-300"
+                      }`}
+                    >
+                      <MessageSquare className="w-3.5 h-3.5" />
+                      <span>LinkedIn</span>
+                    </button>
+                    <button
+                      onClick={() => { setChannel("call"); setAiResponse(null); }}
+                      className={`py-2 px-3 border rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition cursor-pointer ${
+                        channel === "call" 
+                          ? "bg-violet-950/20 border-violet-900/60 text-violet-400" 
+                          : "bg-zinc-950 border-zinc-900 text-zinc-550 hover:border-zinc-800 hover:text-zinc-300"
+                      }`}
+                    >
+                      <PhoneCall className="w-3.5 h-3.5" />
+                      <span>Call Script</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Select Tone */}
+                <div>
+                  <span className="text-[10px] font-bold text-zinc-555 uppercase tracking-wider block mb-2">Outreach Tone</span>
+                  <div className="grid grid-cols-4 gap-1">
+                    {(["professional", "friendly", "bold", "value"] as const).map((t) => (
+                      <button
+                        key={t}
+                        onClick={() => { setTone(t); setAiResponse(null); }}
+                        className={`py-1.5 border rounded-lg text-[9px] font-bold uppercase tracking-wider transition capitalize cursor-pointer ${
+                          tone === t 
+                            ? "bg-zinc-900 border-zinc-700 text-white" 
+                            : "bg-zinc-950 border-zinc-900/50 text-zinc-500 hover:text-zinc-350 hover:bg-zinc-900/20"
+                        }`}
+                      >
+                        {t}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Additional Custom Prompts */}
+                <div>
+                  <label htmlFor="custom-prompt" className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block mb-2">Additional Instructions / Context</label>
+                  <textarea
+                    id="custom-prompt"
+                    rows={2}
+                    value={customPrompt}
+                    onChange={(e) => setCustomPrompt(e.target.value)}
+                    placeholder="e.g. Keep under 80 words, mention competitor is Stripe, focus on database caching speed..."
+                    className="w-full bg-zinc-955 border border-zinc-900 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-violet-500/60 focus:ring-1 focus:ring-violet-500/60 transition resize-none bg-zinc-950"
+                  />
+                </div>
+
+                {/* Rate limit warning */}
+                {credits <= 0 && (
+                  <div className="p-3 bg-amber-955/20 border border-amber-900/30 text-amber-500 rounded-xl flex items-start space-x-2.5 text-xs leading-normal">
+                    <Zap className="w-4 h-4 text-amber-500 shrink-0 mt-0.5 animate-pulse" />
+                    <span>Rate limit exceeded (5 requests/min). AI quota resets in 15 seconds. Please wait or upgrade.</span>
+                  </div>
+                )}
+
+                {/* Generate Trigger */}
+                <button
+                  onClick={handleGenerateOutreach}
+                  disabled={isGenerating || credits <= 0}
+                  className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-40 disabled:hover:bg-violet-600 text-white font-semibold text-xs py-3 rounded-xl flex items-center justify-center space-x-2 transition shadow-lg shadow-violet-600/10 font-outfit cursor-pointer disabled:cursor-not-allowed"
+                >
+                  {isGenerating ? (
+                    <Loader2 className="w-4 h-4 shrink-0 animate-spin" />
+                  ) : (
+                    <Sparkles className="w-4 h-4 shrink-0" />
+                  )}
+                  <span>{isGenerating ? "AI Outreach Agent working..." : "Generate AI Outreach Copy"}</span>
+                </button>
+
+                {/* Simulated Agent progress */}
+                {isGenerating && (
+                  <div className="p-4 bg-zinc-950 border border-zinc-900 rounded-xl flex items-center space-x-3 text-xs text-zinc-400">
+                    <Loader2 className="w-4 h-4 text-violet-500 animate-spin shrink-0" />
+                    <span className="animate-pulse font-medium">{loadingStep}</span>
+                  </div>
+                )}
+
+                {/* Response Display Box */}
+                {aiResponse && !isGenerating && (
+                  <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-4 relative group">
+                    <div className="flex justify-between items-center mb-2.5 pb-2 border-b border-zinc-900">
+                      <span className="text-[9px] font-bold text-violet-400 uppercase tracking-wider block">AI Generated Outbound Copy</span>
+                      <button
+                        onClick={handleCopyEmail}
+                        className="text-[10px] text-zinc-400 hover:text-white font-semibold transition cursor-pointer flex items-center space-x-1"
+                      >
+                        {copySuccess ? (
+                          <>
+                            <Check className="w-3.5 h-3.5 text-emerald-400" />
+                            <span className="text-emerald-400">Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Clipboard className="w-3.5 h-3.5" />
+                            <span>Copy</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                    <pre className="text-[11px] text-zinc-350 leading-relaxed font-mono whitespace-pre-wrap break-words">
+                      {aiResponse}
+                    </pre>
+                  </div>
+                )}
+              </>
             )}
-          </div>
+          </div>        </div>
 
         </div>
       </motion.div>

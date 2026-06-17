@@ -122,6 +122,10 @@ interface SignalScoutContextType {
   generateWorkspace: () => void;
   recalculateScores: () => void;
   gtmSummary: string;
+  userRole: UserRole;
+  setUserRole: (r: UserRole) => void;
+  credits: number;
+  setCredits: (c: number) => void;
 }
 
 const SignalScoutContext = createContext<SignalScoutContextType | undefined>(undefined);
@@ -169,6 +173,17 @@ export const SignalScoutProvider = ({ children }: { children: ReactNode }) => {
   const [gtmSummary, setGtmSummary] = useState<string>(
     "Active GTM Strategy: Targeting growing B2B SaaS companies undergoing security audits (SOC2/ISO). The GTM engine crawls target domains looking for trust directories, job vacancies in cybersecurity, and enterprise pricing updates to capture buying timing windows."
   );
+
+  const [userRole, setUserRole] = useState<UserRole>("admin");
+  const [credits, setCredits] = useState<number>(5);
+
+  // Credit refill loop for simulated AI Rate Limiting
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCredits((prev) => Math.min(5, prev + 1));
+    }, 15000); // Refill 1 credit every 15 seconds
+    return () => clearInterval(interval);
+  }, []);
 
   const setStep = useCallback((s: number | "research" | "dashboard") => {
     setStepState(s);
@@ -502,7 +517,11 @@ export const SignalScoutProvider = ({ children }: { children: ReactNode }) => {
         clearConsoleLogs,
         generateWorkspace,
         recalculateScores,
-        gtmSummary
+        gtmSummary,
+        userRole,
+        setUserRole,
+        credits,
+        setCredits
       }}
     >
       {children}

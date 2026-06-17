@@ -11,7 +11,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ activeTab, setSidebarCollapsed, sidebarCollapsed }: NavbarProps) {
-  const { offer } = useSignalScout();
+  const { offer, userRole, setUserRole } = useSignalScout();
 
   const getTitle = () => {
     switch (activeTab) {
@@ -42,25 +42,40 @@ export default function Navbar({ activeTab, setSidebarCollapsed, sidebarCollapse
         </div>
       </div>
 
-      {/* Status Indicators */}
-      <div className="flex items-center space-x-4">
+      {/* Status Indicators & RBAC Selector */}
+      <div className="flex items-center space-x-3.5">
         
+        {/* Role Selector dropdown */}
+        <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-zinc-900/60 border border-zinc-850 rounded-xl relative">
+          <Shield className="w-3.5 h-3.5 text-zinc-500" />
+          <span className="text-[9px] font-bold text-zinc-550 uppercase tracking-wider hidden sm:inline">Role:</span>
+          <select
+            value={userRole}
+            onChange={(e) => setUserRole(e.target.value as any)}
+            className="bg-transparent text-[9px] font-bold text-zinc-300 focus:outline-none cursor-pointer uppercase tracking-wider pr-1 border-none focus:ring-0 outline-none"
+          >
+            <option value="admin" className="bg-zinc-950 text-zinc-350">Admin</option>
+            <option value="sales" className="bg-zinc-950 text-zinc-350">Sales Rep</option>
+            <option value="marketing" className="bg-zinc-950 text-zinc-350">Marketing</option>
+          </select>
+        </div>
+
         {/* Pulsing Crawler Status */}
         <div className="flex items-center space-x-2 px-3 py-1.5 bg-zinc-900/80 border border-zinc-850 rounded-xl">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider hidden sm:inline">
+          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider hidden lg:inline">
             GTM Crawler Live
           </span>
         </div>
 
         {/* Protection / Sandbox Badge */}
         <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-violet-950/20 border border-violet-900/30 text-violet-400 rounded-xl">
-          <Shield className="w-3.5 h-3.5" />
-          <span className="text-[10px] font-bold uppercase tracking-wider">
-            AI Engine Connected
+          <span className="relative w-1.5 h-1.5 rounded-full bg-violet-400" />
+          <span className="text-[9px] font-bold uppercase tracking-wider hidden sm:inline">
+            AI Active
           </span>
         </div>
 

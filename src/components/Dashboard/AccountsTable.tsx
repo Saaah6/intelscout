@@ -9,7 +9,8 @@ interface AccountsTableProps {
 }
 
 export default function AccountsTable({ onRevealInsights }: AccountsTableProps) {
-  const { accounts, signals } = useSignalScout();
+  const { accounts, signals, userRole } = useSignalScout();
+  const isMarketing = userRole === "marketing";
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTierFilter, setActiveTierFilter] = useState<"all" | 1 | 2 | 3 | 4>("all");
   const [techFilter, setTechFilter] = useState("all");
@@ -142,11 +143,12 @@ export default function AccountsTable({ onRevealInsights }: AccountsTableProps) 
         {/* CSV Export Button (Stage 14) */}
         <button
           onClick={exportToCSV}
-          disabled={accounts.length === 0}
-          className="px-4 py-2 bg-zinc-800 hover:bg-zinc-750 disabled:opacity-40 text-white rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition shrink-0"
+          disabled={accounts.length === 0 || isMarketing}
+          title={isMarketing ? "CSV Export restricted to Admin & Sales roles" : "Export accounts to CSV"}
+          className="px-4 py-2 bg-zinc-800 hover:bg-zinc-750 disabled:opacity-40 text-white rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition shrink-0 cursor-pointer disabled:cursor-not-allowed"
         >
           <Download className="w-3.5 h-3.5" />
-          <span>Export CSV</span>
+          <span>{isMarketing ? "Export Restricted" : "Export CSV"}</span>
         </button>
 
       </div>
