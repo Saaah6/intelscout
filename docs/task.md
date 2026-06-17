@@ -1,0 +1,38 @@
+# Task List: SignalScout AI
+
+- `[x]` Initialize Next.js App in `d:\demo\signal-scout`
+  - `[x]` Test `create-next-app` help option
+  - `[x]` Run non-interactive initialization
+  - `[x]` Configure TypeScript, Tailwind CSS, and App Router
+- `[x]` Install Project Dependencies
+  - `[x]` Install `lucide-react` for premium icons
+  - `[x]` Install `framer-motion` for micro-animations
+- `[x]` Set Up Custom Design System & CSS
+  - `[x]` Configure `tailwind.config.ts` (Stripe/Linear dark-mode palette)
+  - `[x]` Style globals in `src/app/globals.css` (scrollbar, glow effects, custom scroll transitions)
+- `[x]` Create Context & State Engine
+  - `[x]` `src/context/SignalScoutContext.tsx`
+  - `[x]` Custom rules for generating technographics, buying committees, and trigger events based on business offer inputs
+  - `[x]` Client-side qualification scoring algorithm (Opportunity Score = Fit + Intent + Timing + Signals)
+  - `[x]` CSV parser and default tech company dataset
+- `[x]` Build Onboarding Wizard Components
+  - `[x]` `src/components/Onboarding/Stage1Offer.tsx` (Form inputs)
+  - `[x]` `src/components/Onboarding/Stage2ICP.tsx` (Firmographics, Technographics, Signals)
+  - `[x]` `src/components/Onboarding/Stage3Pain.tsx` (Pain map & triggers visualization)
+  - `[x]` `src/x` `src/components/Onboarding/Stage4Weights.tsx` (Interactive sliders/inputs for signal weights)
+  - `[x]` `src/components/Onboarding/Stage5Import.tsx` (CSV drop-zone / file parser & load-demo button)
+  - `[x]` `src/components/Onboarding/ResearchEngine.tsx` (Simulated website scanner with live logs terminal)
+- `[x]` Build Dashboard Layout & View Components
+  - `[x]` `src/components/Dashboard/Sidebar.tsx` (Collapsible menu)
+  - `[x]` `src/components/Dashboard/Navbar.tsx` (Status bar, interactive reset, desktop controls)
+  - `[x]` `src/components/Dashboard/KPIWidgets.tsx` (Premium metrics cards with sparkline visuals)
+  - `[x]` `src/components/Dashboard/AnalyticsCharts.tsx` (Custom interactive SVGs for intent / pipeline)
+  - `[x]` `src/components/Dashboard/AccountsTable.tsx` (Enterprise search, filter tabs, sorting)
+  - `[x]` `src/components/Dashboard/CompanyDetailsDrawer.tsx` (Detailed reasons, persona recommendations, custom pitches)
+  - `[x]` `src/components/Dashboard/IntelligenceFeed.tsx` (Real-time live signal stream sliding in)
+  - `[x]` `src/components/Dashboard/SettingsPanel.tsx` (Weight tuning panel)
+- `[x]` Assemble Main Router & Pages
+  - `[x]` Modify `src/app/page.tsx` to handle onboarding transitions and workspace dashboards
+- `[x]` Test & Verify
+  - `[x]` Verify TypeScript compile & production build
+  - `[x]` Manual review of responsiveness & workflows
