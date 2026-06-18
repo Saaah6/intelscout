@@ -10,9 +10,10 @@ import CompanyDetailsDrawer from "./CompanyDetailsDrawer";
 import IntelligenceFeed from "./IntelligenceFeed";
 import SettingsPanel from "./SettingsPanel";
 import AudiencePanel from "./AudiencePanel";
+import EnvironmentsPanel from "./EnvironmentsPanel";
 import { Account, useIntelScout } from "@/context/IntelScoutContext";
 import { AnimatePresence } from "framer-motion";
-import { Sparkle, SquaresFour, Table, Sliders, Pulse, Users } from "@phosphor-icons/react";
+import { Sparkle, SquaresFour, Table, Sliders, Pulse, Users, Stack } from "@phosphor-icons/react";
 
 export default function DashboardLayout() {
   const { gtmSummary, accounts } = useIntelScout();
@@ -25,6 +26,7 @@ export default function DashboardLayout() {
     { id: "accounts", label: "Prioritized Accounts", icon: Table, badge: accounts.length },
     { id: "signals", label: "Signal Tuning", icon: Sliders },
     { id: "feed", label: "Intelligence Feed", icon: Pulse },
+    { id: "environments", label: "Environments", icon: Stack },
     { id: "audience", label: "Audience & Auth", icon: Users }
   ];
 
@@ -106,6 +108,12 @@ export default function DashboardLayout() {
                 </ul>
               </div>
             </div>
+          </div>
+        );
+      case "environments":
+        return (
+          <div className="flex-1 flex flex-col h-full items-center">
+            <EnvironmentsPanel />
           </div>
         );
       case "audience":

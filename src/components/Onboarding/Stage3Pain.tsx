@@ -20,7 +20,7 @@ export default function Stage3Pain() {
           </div>
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-white font-outfit">Pain Mapping Blueprint</h2>
-            <p className="text-sm text-zinc-400">IntelScout maps core problem statements to operational pains, triggers, and motivations.</p>
+            <p className="text-sm text-zinc-400">Signal Scout maps core problem statements to operational pains, triggers, and motivations.</p>
           </div>
         </div>
       </div>

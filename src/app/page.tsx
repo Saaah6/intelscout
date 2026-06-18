@@ -10,7 +10,8 @@ import Stage5Import from "@/components/Onboarding/Stage5Import";
 import ResearchEngine from "@/components/Onboarding/ResearchEngine";
 import DashboardLayout from "@/components/Dashboard/DashboardLayout";
 import LandingPage from "@/components/LandingPage";
-import { Target, SignOut } from "@phosphor-icons/react";
+import AnimatedLogo from "@/components/AnimatedLogo";
+import { SignOut } from "@phosphor-icons/react";
 import CosmosBackground from "@/components/CosmosBackground";
 import LiquidCurtain from "@/components/LiquidCurtain";
 
@@ -75,9 +76,8 @@ function OnboardingSteps() {
 
       {/* Setup Steps Wizard Header */}
       <div className="w-full max-w-xl flex flex-col items-center mb-8 text-center">
-        <div className="flex items-center space-x-2 text-violet-400 mb-2">
-          <Target className="w-6 h-6 animate-pulse" />
-          <span className="font-extrabold text-lg tracking-wider font-outfit uppercase">IntelScout AI</span>
+        <div className="flex items-center justify-center mb-2">
+          <AnimatedLogo className="w-6 h-6" showText={true} />
         </div>
         <h1 className="text-xl font-bold text-white mb-4 font-outfit">Campaign Configuration</h1>
         

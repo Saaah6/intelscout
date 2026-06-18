@@ -38,7 +38,7 @@ export default function Stage1Offer() {
         </div>
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-white font-outfit">Define Your Offer</h2>
-          <p className="text-sm text-zinc-400">Describe what you sell so IntelScout can compile your GTM blueprint.</p>
+          <p className="text-sm text-zinc-400">Describe what you sell so Signal Scout can compile your GTM blueprint.</p>
         </div>
       </div>
 

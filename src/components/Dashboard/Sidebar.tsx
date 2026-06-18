@@ -11,8 +11,11 @@ import {
   CaretDoubleRight, 
   SignOut,
   Target,
-  Users
+  Users,
+  Stack
 } from "@phosphor-icons/react";
+
+import AnimatedLogo from "../AnimatedLogo";
 
 interface SidebarProps {
   activeTab: string;
@@ -29,6 +32,7 @@ export default function Sidebar({ activeTab, setActiveTab, collapsed, setCollaps
     { id: "accounts", label: "Prioritized Accounts", icon: Table, badge: accounts.length },
     { id: "signals", label: "Signal Tuning", icon: Sliders },
     { id: "feed", label: "Intelligence Feed", icon: Pulse },
+    { id: "environments", label: "Environments", icon: Stack },
     { id: "audience", label: "Audience & Auth", icon: Users }
   ];
 
@@ -40,20 +44,13 @@ export default function Sidebar({ activeTab, setActiveTab, collapsed, setCollaps
     >
       {/* Sidebar Header */}
       <div className="h-16 flex items-center px-4 justify-between border-b border-zinc-900">
-        <div className="flex items-center space-x-2.5 overflow-hidden">
-          <div className="p-1.5 bg-violet-600/10 border border-violet-500/20 text-violet-400 rounded-lg shrink-0">
-            <Target className="w-5 h-5" />
-          </div>
-          {!collapsed && (
-            <span className="font-bold text-sm tracking-tight text-white font-outfit truncate">
-              IntelScout <span className="text-violet-400">AI</span>
-            </span>
-          )}
+        <div className="overflow-hidden">
+          <AnimatedLogo className="w-6 h-6" showText={!collapsed} />
         </div>
         {!collapsed && (
           <button 
             onClick={() => setCollapsed(true)}
-            className="p-1 hover:bg-zinc-900 rounded-lg text-zinc-500 hover:text-zinc-300 transition"
+            className="p-1 hover:bg-zinc-900 rounded-lg text-zinc-550 hover:text-zinc-300 transition"
           >
             <CaretDoubleLeft className="w-4 h-4" />
           </button>

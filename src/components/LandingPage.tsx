@@ -18,6 +18,8 @@ import {
   CircleNotch
 } from "@phosphor-icons/react";
 
+import AnimatedLogo from "./AnimatedLogo";
+
 export default function LandingPage() {
   const { signIn, isLoaded: isSignInLoaded } = useSignIn();
   
@@ -97,7 +99,7 @@ export default function LandingPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "IntelScout AI",
+    "name": "Signal Scout",
     "operatingSystem": "All",
     "applicationCategory": "BusinessApplication",
     "description": "Real-time AI crawler, technographics parser, and account qualification scoring engine for enterprise GTM teams.",
@@ -148,14 +150,7 @@ export default function LandingPage() {
 
       {/* Centered Floating Glassmorphic Top Navigation Dock */}
       <div className="fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl bg-zinc-900/70 border border-zinc-800/85 backdrop-blur-md rounded-full shadow-2xl z-40 px-6 py-3 flex items-center justify-between transition-all duration-300">
-        <div className="flex items-center space-x-2.5">
-          <div className="p-1.5 bg-violet-600/10 border border-violet-500/25 text-violet-400 rounded-full">
-            <Target className="w-4 h-4" />
-          </div>
-          <span className="font-bold text-sm tracking-tight text-white font-outfit">
-            IntelScout <span className="text-violet-400">AI</span>
-          </span>
-        </div>
+        <AnimatedLogo className="w-5 h-5" showText={true} />
 
         <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-6 text-[10px] uppercase tracking-wider font-bold text-zinc-400">
           <a href="#features" className="hover:text-violet-400 transition">Features</a>
@@ -184,13 +179,13 @@ export default function LandingPage() {
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-4xl font-outfit">
           Qualify B2B Accounts in Real-Time with{" "}
           <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-indigo-400 bg-clip-text text-transparent">
-            IntelScout Crawler
+            Signal Scout Crawler
           </span>
         </h1>
 
         {/* Hero Description */}
         <p className="mt-6 text-zinc-400 text-sm sm:text-base max-w-2xl leading-relaxed font-medium">
-          IntelScout crawls target domains to monitor security changes, hiring activities, pricing expansions, and regional updates, scoring every account on automatic qualification vectors.
+          Signal Scout crawls target domains to monitor security changes, hiring activities, pricing expansions, and regional updates, scoring every account on automatic qualification vectors.
         </p>
 
         {/* Google CTA Button */}
@@ -358,7 +353,7 @@ export default function LandingPage() {
       <footer className="w-full border-t border-zinc-900/60 py-8 text-center text-xs text-zinc-500 font-medium z-20 bg-zinc-950/80">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-[10px] text-zinc-650">
-            &copy; {new Date().getFullYear()} IntelScout AI Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} Signal Scout Inc. All rights reserved.
           </div>
           <div className="flex space-x-6 text-[10px] uppercase tracking-wider font-bold">
             <a href="#features" className="hover:text-violet-400 transition">Features</a>
@@ -381,13 +376,7 @@ export default function LandingPage() {
             >
               {/* Portal Header */}
               <div className="flex items-center space-x-2.5 pb-4 border-b border-zinc-850/60">
-                <div className="p-1.5 bg-violet-650/10 border border-violet-500/25 text-violet-400 rounded-xl">
-                  <Target className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-xs font-black text-white uppercase tracking-wider font-outfit">IntelScout AI Console</h3>
-                  <p className="text-[9px] text-zinc-550 font-bold uppercase tracking-widest">Select auth provider to log in</p>
-                </div>
+                <AnimatedLogo className="w-5 h-5" showText={true} />
               </div>
 
               {loginSubmitting ? (
