@@ -119,13 +119,13 @@ export default function LandingPage() {
       <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-emerald-600/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-[35%] right-[25%] w-[400px] h-[400px] bg-indigo-600/5 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Header / Navbar */}
-      <header className="w-full max-w-7xl mx-auto px-6 h-20 flex items-center justify-between border-b border-zinc-900/60 z-20">
+      {/* Centered Floating Glassmorphic Top Navigation Dock */}
+      <div className="fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl bg-zinc-900/70 border border-zinc-800/85 backdrop-blur-md rounded-full shadow-2xl z-40 px-6 py-3 flex items-center justify-between transition-all duration-300">
         <div className="flex items-center space-x-2.5">
-          <div className="p-2 bg-violet-600/10 border border-violet-500/25 text-violet-400 rounded-xl">
-            <Target className="w-5 h-5" />
+          <div className="p-1.5 bg-violet-600/10 border border-violet-500/25 text-violet-400 rounded-full">
+            <Target className="w-4 h-4" />
           </div>
-          <span className="font-bold text-base tracking-tight text-white font-outfit">
+          <span className="font-bold text-sm tracking-tight text-white font-outfit">
             IntelScout <span className="text-violet-400">AI</span>
           </span>
         </div>
@@ -138,14 +138,14 @@ export default function LandingPage() {
 
         <button 
           onClick={() => setShowGooglePopup(true)}
-          className="px-4 py-2 bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 hover:border-zinc-700 text-xs font-bold rounded-xl transition duration-300"
+          className="px-3.5 py-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-[10px] uppercase tracking-wider font-bold rounded-full transition duration-300 cursor-pointer"
         >
           Sign In
         </button>
-      </header>
+      </div>
 
       {/* Hero Section */}
-      <main className="flex-1 max-w-7xl mx-auto px-6 pt-16 pb-20 w-full flex flex-col items-center justify-center relative z-25 text-center">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 pt-28 pb-20 w-full flex flex-col items-center justify-center relative z-25 text-center">
         
         {/* Glow Badge */}
         <div className="inline-flex items-center space-x-2 px-3 py-1.5 bg-violet-950/20 border border-violet-900/30 text-violet-400 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 shadow-md shadow-violet-950/10 animate-pulse">
@@ -157,7 +157,7 @@ export default function LandingPage() {
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-4xl font-outfit">
           Qualify B2B Accounts in Real-Time with{" "}
           <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-indigo-400 bg-clip-text text-transparent">
-            Signal Intent Scraper
+            IntelScout Crawler
           </span>
         </h1>
 
@@ -182,14 +182,15 @@ export default function LandingPage() {
         </div>
 
         {/* Mock Graphic Visualizer Card */}
-        <div id="how-it-works" className="mt-14 w-full max-w-4xl bg-zinc-900/40 border border-zinc-900 rounded-2xl p-5 relative overflow-hidden backdrop-blur-sm shadow-2xl">
+        <div id="how-it-works" className="mt-14 w-full max-w-4xl bg-zinc-900/40 border border-zinc-900 rounded-2xl p-4 sm:p-5 relative overflow-hidden backdrop-blur-sm shadow-2xl">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-violet-600 to-indigo-600" />
           <div className="flex items-center justify-between border-b border-zinc-850/60 pb-3 mb-4 text-left">
             <div className="flex items-center space-x-2">
               <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
               <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
               <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
-              <span className="text-[10px] text-zinc-500 font-mono pl-2">GTM PRIORITIZATION PANEL &bull; SEC_MONITORING_LIVE</span>
+              <span className="text-[10px] text-zinc-500 font-mono pl-2 hidden sm:inline">GTM PRIORITIZATION PANEL &bull; SEC_MONITORING_LIVE</span>
+              <span className="text-[10px] text-zinc-500 font-mono pl-2 sm:hidden">PRIORITIZATION PANEL</span>
             </div>
             <div className="px-2.5 py-1 bg-violet-950/20 border border-violet-900/30 text-violet-400 rounded-lg text-[9px] font-bold tracking-wider">
               100% AUTOMATED
@@ -245,7 +246,7 @@ export default function LandingPage() {
             <div className="w-10 h-10 rounded-xl bg-indigo-950/30 border border-indigo-900/40 text-indigo-400 flex items-center justify-center mb-5">
               <Users className="w-5 h-5" />
             </div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider font-outfit">GTM Contact blueprints</h3>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider font-outfit">GTM Contact Blueprints</h3>
             <p className="text-zinc-400 text-xs mt-3 leading-relaxed">
               Maps target accounts to buying committees and writes highly contextual, personalized email sequences tailored to their exact active pain points.
             </p>

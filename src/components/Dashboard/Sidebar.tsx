@@ -34,7 +34,7 @@ export default function Sidebar({ activeTab, setActiveTab, collapsed, setCollaps
 
   return (
     <aside 
-      className={`bg-zinc-950 border-r border-zinc-900 flex flex-col transition-all duration-300 relative ${
+      className={`bg-zinc-950 border-r border-zinc-900 hidden md:flex flex-col transition-all duration-300 relative ${
         collapsed ? "w-16" : "w-64"
       }`}
     >

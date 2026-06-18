@@ -45,7 +45,7 @@ export default function Stage1Offer() {
       {/* Examples Grid */}
       <div className="mb-6">
         <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider block mb-2">Quick Examples</span>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <button
             type="button"
             onClick={() => loadExample("AI Compliance Platform", "Reduce compliance effort and automate SOC2 audits", "$20,000-$100,000", "Medium")}
@@ -72,7 +72,7 @@ export default function Stage1Offer() {
           </button>
         </div>
       </div>
-
+ 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label htmlFor="sell-input" className="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2">What do you sell?</label>
@@ -86,7 +86,7 @@ export default function Stage1Offer() {
             required
           />
         </div>
-
+ 
         <div>
           <label htmlFor="problem-input" className="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2">What critical problem do you solve?</label>
           <textarea
@@ -99,8 +99,8 @@ export default function Stage1Offer() {
             required
           />
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+ 
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="deal-size-select" className="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2">Average Deal Size (ACV)</label>
             <select

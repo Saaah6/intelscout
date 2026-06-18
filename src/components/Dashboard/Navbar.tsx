@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useIntelScout } from "@/context/IntelScoutContext";
-import { List, Shield } from "@phosphor-icons/react";
+import { Shield, Sliders, SignOut, Target } from "@phosphor-icons/react";
 
 interface NavbarProps {
   activeTab: string;
@@ -11,7 +11,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ activeTab, setSidebarCollapsed, sidebarCollapsed }: NavbarProps) {
-  const { offer, userRole, setUserRole } = useIntelScout();
+  const { offer, userRole, setUserRole, user, logout, setStep } = useIntelScout();
 
   const getTitle = () => {
     switch (activeTab) {
@@ -29,12 +29,9 @@ export default function Navbar({ activeTab, setSidebarCollapsed, sidebarCollapse
       
       {/* View Title */}
       <div className="flex items-center space-x-3">
-        <button 
-          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          className="p-1.5 hover:bg-zinc-900 rounded-lg text-zinc-500 hover:text-zinc-300 md:hidden transition"
-        >
-          <List className="w-5 h-5" />
-        </button>
+        <div className="p-1.5 bg-violet-600/10 border border-violet-500/20 text-violet-400 rounded-lg md:hidden">
+          <Target className="w-4 h-4" />
+        </div>
         <div>
           <h1 className="text-sm font-bold tracking-tight text-white font-outfit">{getTitle()}</h1>
           <p className="text-[10px] text-zinc-400 font-medium hidden md:block">
@@ -44,7 +41,7 @@ export default function Navbar({ activeTab, setSidebarCollapsed, sidebarCollapse
       </div>
 
       {/* Status Indicators & RBAC Selector */}
-      <div className="flex items-center space-x-3.5">
+      <div className="flex items-center space-x-3">
         
         {/* Role Selector dropdown */}
         <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-zinc-900/60 border border-zinc-850 rounded-xl relative">
@@ -79,6 +76,26 @@ export default function Navbar({ activeTab, setSidebarCollapsed, sidebarCollapse
             AI Active
           </span>
         </div>
+
+        {/* Mobile Profile & Signout Actions */}
+        {user && (
+          <div className="flex items-center space-x-2 md:hidden">
+            <button
+              onClick={() => setStep(1)}
+              title="Reset Campaign"
+              className="p-1.5 bg-zinc-900 hover:bg-zinc-855 border border-zinc-850 text-zinc-400 hover:text-zinc-300 rounded-lg transition cursor-pointer"
+            >
+              <Sliders className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={logout}
+              title="Sign Out"
+              className="p-1.5 bg-zinc-900 hover:bg-zinc-855 border border-zinc-850 text-zinc-400 hover:text-red-400 rounded-lg transition cursor-pointer"
+            >
+              <SignOut className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        )}
 
       </div>
 

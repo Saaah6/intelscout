@@ -43,17 +43,17 @@ function OnboardingSteps() {
     <div className="min-h-screen bg-zinc-950 flex flex-col justify-center items-center p-6 relative overflow-hidden font-sans">
       {/* Absolute positioned floating profile & signout */}
       {user && (
-        <div className="absolute top-6 right-6 flex items-center space-x-3 bg-zinc-900/40 border border-zinc-800 rounded-full py-1.5 pl-2.5 pr-4 shadow-lg backdrop-blur-md z-40">
+        <div className="absolute top-6 right-6 flex items-center space-x-2 sm:space-x-3 bg-zinc-900/40 border border-zinc-800 rounded-full py-1.5 px-2.5 sm:pl-2.5 sm:pr-4 shadow-lg backdrop-blur-md z-40">
           <img 
             src={user.avatar} 
             alt={user.name} 
             className="w-5 h-5 rounded-full ring-1 ring-violet-500/30"
           />
-          <div className="flex flex-col text-left">
+          <div className="hidden sm:flex flex-col text-left">
             <span className="text-[10px] font-bold text-white max-w-[100px] truncate leading-tight font-outfit">{user.name}</span>
-            <span className="text-[8px] text-zinc-500 truncate leading-none max-w-[100px]">{user.email}</span>
+            <span className="text-[8px] text-zinc-550 truncate leading-none max-w-[100px]">{user.email}</span>
           </div>
-          <div className="w-px h-5 bg-zinc-800" />
+          <div className="hidden sm:block w-px h-5 bg-zinc-800" />
           <button
             onClick={logout}
             className="text-zinc-400 hover:text-red-400 transition text-[9px] font-bold flex items-center space-x-1.5 uppercase tracking-wider cursor-pointer"
