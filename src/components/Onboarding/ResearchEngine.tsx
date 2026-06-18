@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { useSignalScout } from "@/context/SignalScoutContext";
-import { Terminal, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { Terminal, ShieldCheck, CheckCircle } from "@phosphor-icons/react";
 
 export default function ResearchEngine() {
   const { 
@@ -131,7 +131,7 @@ export default function ResearchEngine() {
             onClick={() => setStep("dashboard")}
             className="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs rounded-lg flex items-center space-x-1.5 transition"
           >
-            <CheckCircle2 className="w-4 h-4" />
+            <CheckCircle className="w-4 h-4" />
             <span>Enter Console</span>
           </button>
         </div>

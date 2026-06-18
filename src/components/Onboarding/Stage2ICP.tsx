@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useSignalScout } from "@/context/SignalScoutContext";
-import { ArrowLeft, ArrowRight, Building2, Cpu, Sparkles, Users2, Plus, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Buildings, Cpu, Sparkle, Users, Plus, X } from "@phosphor-icons/react";
 
 export default function Stage2ICP() {
   const { icp, setIcp, setStep } = useSignalScout();
@@ -52,7 +52,7 @@ export default function Stage2ICP() {
       <div className="flex items-center justify-between mb-8 pb-4 border-b border-zinc-800/80">
         <div className="flex items-center space-x-3">
           <div className="p-2.5 bg-violet-600/10 border border-violet-500/20 text-violet-400 rounded-xl">
-            <Sparkles className="w-6 h-6" />
+            <Sparkle className="w-6 h-6" />
           </div>
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-white font-outfit">Ideal Customer Profile (ICP)</h2>
@@ -66,7 +66,7 @@ export default function Stage2ICP() {
         {/* Firmographics Card */}
         <div className="bg-zinc-950/40 border border-zinc-800/80 rounded-xl p-5 hover:border-zinc-700/50 transition">
           <div className="flex items-center space-x-2.5 text-violet-400 mb-4">
-            <Building2 className="w-5 h-5" />
+            <Buildings className="w-5 h-5" />
             <h3 className="font-semibold text-white font-outfit">Firmographics</h3>
           </div>
           <div className="space-y-3.5 text-sm">
@@ -96,7 +96,7 @@ export default function Stage2ICP() {
         {/* Buying Committee Card */}
         <div className="bg-zinc-950/40 border border-zinc-800/80 rounded-xl p-5 hover:border-zinc-700/50 transition">
           <div className="flex items-center space-x-2.5 text-violet-400 mb-4">
-            <Users2 className="w-5 h-5" />
+            <Users className="w-5 h-5" />
             <h3 className="font-semibold text-white font-outfit">Buying Committee</h3>
           </div>
           <p className="text-xs text-zinc-400 mb-3">Key decision makers and target personas SignalScout will identify:</p>
@@ -156,7 +156,7 @@ export default function Stage2ICP() {
         {/* Growth Signals Card */}
         <div className="bg-zinc-950/40 border border-zinc-800/80 rounded-xl p-5 hover:border-zinc-700/50 transition md:col-span-1">
           <div className="flex items-center space-x-2.5 text-violet-400 mb-3">
-            <Sparkles className="w-5 h-5" />
+            <Sparkle className="w-5 h-5" />
             <h3 className="font-semibold text-white font-outfit">Hiring & Growth Triggers</h3>
           </div>
           <p className="text-xs text-zinc-400 mb-3">We look for these signals to determine timing:</p>

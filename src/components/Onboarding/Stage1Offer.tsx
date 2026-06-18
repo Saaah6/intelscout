@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useSignalScout } from "@/context/SignalScoutContext";
-import { ArrowRight, Compass } from "lucide-react";
+import { ArrowRight, Compass } from "@phosphor-icons/react";
 
 export default function Stage1Offer() {
   const { offer, setOffer, generateWorkspace, setStep } = useSignalScout();

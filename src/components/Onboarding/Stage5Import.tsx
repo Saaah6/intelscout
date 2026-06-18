@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { useSignalScout, Account, getOfferCategory } from "@/context/SignalScoutContext";
-import { ArrowLeft, Database, Download, FileText, UploadCloud, Play, Globe, Search, Loader } from "lucide-react";
+import { ArrowLeft, Database, Download, FileText, CloudArrowUp, Play, Globe, MagnifyingGlass, CircleNotch } from "@phosphor-icons/react";
 
 export default function Stage5Import() {
   const { setAccounts, setStep, offer, signals } = useSignalScout();
@@ -380,12 +380,12 @@ export default function Stage5Import() {
           >
             {isAnalyzingSingle ? (
               <>
-                <Loader className="w-3.5 h-3.5 animate-spin" />
+                <CircleNotch className="w-3.5 h-3.5 animate-spin" />
                 <span>Resolving...</span>
               </>
             ) : (
               <>
-                <Search className="w-3.5 h-3.5" />
+                <MagnifyingGlass className="w-3.5 h-3.5" />
                 <span>Analyze Domain</span>
               </>
             )}
@@ -420,7 +420,7 @@ export default function Stage5Import() {
           accept=".csv"
           className="hidden"
         />
-        <UploadCloud className="w-10 h-10 text-zinc-500 mb-3" />
+        <CloudArrowUp className="w-10 h-10 text-zinc-500 mb-3" />
         <p className="text-sm font-semibold text-zinc-200">
           {fileName ? `Selected: ${fileName}` : "Drag & drop your CSV file here"}
         </p>

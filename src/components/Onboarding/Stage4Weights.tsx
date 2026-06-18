@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useSignalScout } from "@/context/SignalScoutContext";
-import { ArrowLeft, ArrowRight, Settings2, Sliders, ToggleLeft, ToggleRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sliders, ToggleLeft, ToggleRight } from "@phosphor-icons/react";
 
 export default function Stage4Weights() {
   const { signals, setSignals, setStep } = useSignalScout();
@@ -74,7 +74,7 @@ export default function Stage4Weights() {
       <div className="flex items-center justify-between mb-6 pb-4 border-b border-zinc-800/80">
         <div className="flex items-center space-x-3">
           <div className="p-2.5 bg-violet-600/10 border border-violet-500/20 text-violet-400 rounded-xl">
-            <Settings2 className="w-6 h-6" />
+            <Sliders className="w-6 h-6" />
           </div>
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-white font-outfit">Dynamic Signal Engine</h2>

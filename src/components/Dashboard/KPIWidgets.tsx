@@ -3,13 +3,13 @@
 import React from "react";
 import { useSignalScout } from "@/context/SignalScoutContext";
 import { 
-  Building2, 
-  AlertCircle, 
-  Activity, 
+  Buildings, 
+  WarningCircle, 
+  Pulse, 
   Compass, 
   Flame, 
-  CircleDollarSign 
-} from "lucide-react";
+  CurrencyDollar 
+} from "@phosphor-icons/react";
 
 export default function KPIWidgets() {
   const { accounts, offer } = useSignalScout();
@@ -56,21 +56,21 @@ export default function KPIWidgets() {
       label: "Accounts Analyzed", 
       value: totalAnalyzed, 
       desc: "Processed in current run", 
-      icon: Building2, 
+      icon: Buildings, 
       color: "text-violet-400 bg-violet-600/10 border-violet-500/20" 
     },
     { 
       label: "High Priority Accounts", 
       value: highPriorityCount, 
       desc: `${highPriorityPercent}% of total accounts`, 
-      icon: AlertCircle, 
+      icon: WarningCircle, 
       color: "text-emerald-400 bg-emerald-600/10 border-emerald-500/20" 
     },
     { 
       label: "Signals Detected", 
       value: totalSignals, 
       desc: "Dynamic triggers matched", 
-      icon: Activity, 
+      icon: Pulse, 
       color: "text-blue-400 bg-blue-600/10 border-blue-500/20" 
     },
     { 
@@ -91,7 +91,7 @@ export default function KPIWidgets() {
       label: "Pipeline Opportunities", 
       value: formatPipeline(totalPipeline), 
       desc: `Est. from ${offer.dealSize} ACV`, 
-      icon: CircleDollarSign, 
+      icon: CurrencyDollar, 
       color: "text-pink-400 bg-pink-600/10 border-pink-500/20" 
     }
   ];

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useSignalScout, Account } from "@/context/SignalScoutContext";
-import { Search, Download, Filter, Eye, ExternalLink } from "lucide-react";
+import { MagnifyingGlass, Download, Funnel, Eye, ArrowSquareOut } from "@phosphor-icons/react";
 
 interface AccountsTableProps {
   onRevealInsights: (account: Account) => void;
@@ -114,7 +114,7 @@ export default function AccountsTable({ onRevealInsights }: AccountsTableProps) 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 flex-1 max-w-2xl">
           {/* Search */}
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-2.5 w-4 h-4 text-zinc-500" />
+            <MagnifyingGlass className="absolute left-3 top-2.5 w-4 h-4 text-zinc-500" />
             <input
               type="text"
               placeholder="Search companies or domains..."
@@ -126,7 +126,7 @@ export default function AccountsTable({ onRevealInsights }: AccountsTableProps) 
 
           {/* Technographic Filter */}
           <div className="relative shrink-0 flex items-center bg-zinc-950 border border-zinc-850 rounded-xl px-2.5">
-            <Filter className="w-3.5 h-3.5 text-zinc-500 mr-2" />
+            <Funnel className="w-3.5 h-3.5 text-zinc-500 mr-2" />
             <select
               value={techFilter}
               onChange={(e) => setTechFilter(e.target.value)}
@@ -249,7 +249,7 @@ export default function AccountsTable({ onRevealInsights }: AccountsTableProps) 
                         className="text-[10px] text-zinc-500 hover:text-zinc-300 inline-flex items-center space-x-0.5 ml-2"
                       >
                         <span>{account.domain}</span>
-                        <ExternalLink className="w-2.5 h-2.5" />
+                        <ArrowSquareOut className="w-2.5 h-2.5" />
                       </a>
                     </div>
                   </td>

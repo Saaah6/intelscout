@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useSignalScout } from "@/context/SignalScoutContext";
-import { Sliders, ToggleLeft, ToggleRight, RefreshCw, CheckCircle } from "lucide-react";
+import { Sliders, ToggleLeft, ToggleRight, ArrowsCounterClockwise, CheckCircle } from "@phosphor-icons/react";
 
 export default function SettingsPanel() {
   const { signals, setSignals, recalculateScores, userRole } = useSignalScout();
@@ -117,7 +117,7 @@ export default function SettingsPanel() {
             </>
           ) : (
             <>
-              <RefreshCw className="w-3.5 h-3.5" />
+              <ArrowsCounterClockwise className="w-3.5 h-3.5" />
               <span>Apply & Recalculate</span>
             </>
           )}

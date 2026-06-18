@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useSignalScout } from "@/context/SignalScoutContext";
-import { Activity, ShieldCheck, Flame, Info } from "lucide-react";
+import { Pulse, ShieldCheck, Flame, Info } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function IntelligenceFeed() {
@@ -29,7 +29,7 @@ export default function IntelligenceFeed() {
       
       {/* Title */}
       <div className="flex items-center space-x-2 mb-4 border-b border-zinc-850/60 pb-3">
-        <Activity className="w-4 h-4 text-violet-400 animate-pulse" />
+        <Pulse className="w-4 h-4 text-violet-400 animate-pulse" />
         <h3 className="text-xs font-bold text-white uppercase tracking-wider font-outfit">Live GTM Signal Feed</h3>
       </div>
 
@@ -42,7 +42,7 @@ export default function IntelligenceFeed() {
         <AnimatePresence initial={false}>
           {feedEvents.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center py-20">
-              <Activity className="w-8 h-8 text-zinc-655 mb-2.5 animate-spin" />
+              <Pulse className="w-8 h-8 text-zinc-655 mb-2.5 animate-spin" />
               <p className="text-xs text-zinc-550 font-medium">Listening for GTM trigger webhooks...</p>
             </div>
           ) : (

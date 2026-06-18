@@ -12,7 +12,7 @@ import SettingsPanel from "./SettingsPanel";
 import AudiencePanel from "./AudiencePanel";
 import { Account, useSignalScout } from "@/context/SignalScoutContext";
 import { AnimatePresence } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { Sparkle } from "@phosphor-icons/react";
 
 export default function DashboardLayout() {
   const { gtmSummary } = useSignalScout();
@@ -36,10 +36,10 @@ export default function DashboardLayout() {
             {/* AI GTM Executive Summary Card */}
             <div className="bg-gradient-to-r from-violet-950/20 to-zinc-900/40 border border-violet-900/20 rounded-xl p-4 flex items-start space-x-3.5 shadow-lg relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-[0.03] text-violet-400 pointer-events-none">
-                <Sparkles className="w-32 h-32" />
+                <Sparkle className="w-32 h-32" />
               </div>
               <div className="p-2 bg-violet-600/10 border border-violet-500/20 text-violet-400 rounded-lg shrink-0 mt-0.5 animate-pulse">
-                <Sparkles className="w-4 h-4" />
+                <Sparkle className="w-4 h-4" />
               </div>
               <div>
                 <span className="text-[9px] font-bold text-violet-400 uppercase tracking-widest block mb-0.5">AI GTM Executive Summary</span>

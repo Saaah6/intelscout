@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useSignalScout } from "@/context/SignalScoutContext";
-import { ArrowLeft, ArrowRight, AlertTriangle, Zap, Eye, Lightbulb, TrendingUp } from "lucide-react";
+import { ArrowLeft, ArrowRight, Warning, Lightning, Eye, Lightbulb, TrendUp } from "@phosphor-icons/react";
 
 export default function Stage3Pain() {
   const { painMap, setStep } = useSignalScout();
@@ -16,7 +16,7 @@ export default function Stage3Pain() {
       <div className="flex items-center justify-between mb-8 pb-4 border-b border-zinc-800/80">
         <div className="flex items-center space-x-3">
           <div className="p-2.5 bg-violet-600/10 border border-violet-500/20 text-violet-400 rounded-xl">
-            <TrendingUp className="w-6 h-6" />
+            <TrendUp className="w-6 h-6" />
           </div>
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-white font-outfit">Pain Mapping Blueprint</h2>
@@ -44,7 +44,7 @@ export default function Stage3Pain() {
         {/* Step 2: Resulting Operational Pains */}
         <div className="relative group">
           <div className="absolute -left-12 top-0.5 p-1.5 bg-zinc-900 border border-zinc-850 text-amber-500/80 rounded-lg group-hover:border-zinc-700 transition">
-            <AlertTriangle className="w-4 h-4" />
+            <Warning className="w-4 h-4" />
           </div>
           <div>
             <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider block mb-2">Customer Pain Points</span>
@@ -64,7 +64,7 @@ export default function Stage3Pain() {
         {/* Step 3: Trigger Events */}
         <div className="relative group">
           <div className="absolute -left-12 top-0.5 p-1.5 bg-zinc-900 border border-zinc-850 text-emerald-500/80 rounded-lg group-hover:border-zinc-700 transition">
-            <Zap className="w-4 h-4" />
+            <Lightning className="w-4 h-4" />
           </div>
           <div>
             <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider block mb-2">Signal Triggers (Buying Window)</span>

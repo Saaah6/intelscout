@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Account, useSignalScout, getOfferCategory, Offer } from "@/context/SignalScoutContext";
-import { X, Users2, Send, Lightbulb, Compass, Zap, Sparkles, MessageSquare, Clipboard, PhoneCall, Check, Loader2, Shield } from "lucide-react";
+import { X, Users, PaperPlane, Lightbulb, Compass, Lightning, Sparkle, Chat, Clipboard, PhoneCall, Check, CircleNotch, Shield } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 
 interface CompanyDetailsDrawerProps {
@@ -323,7 +323,7 @@ ${promptText ? `[Note: Custom instruction: "${promptText}"]` : ""}`;
           {/* Buying Committee Mapping (Stage 9) */}
           <div>
             <div className="flex items-center space-x-2 text-zinc-300 mb-3 border-b border-zinc-900 pb-2">
-              <Users2 className="w-4 h-4 text-violet-400" />
+              <Users className="w-4 h-4 text-violet-400" />
               <h3 className="text-xs font-bold uppercase tracking-wider text-white font-outfit">Buying Committee Map</h3>
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
@@ -349,7 +349,7 @@ ${promptText ? `[Note: Custom instruction: "${promptText}"]` : ""}`;
           {/* GTM Recommendations (Stage 10) */}
           <div>
             <div className="flex items-center space-x-2 text-zinc-300 mb-3 border-b border-zinc-900 pb-2">
-              <Send className="w-4 h-4 text-violet-400" />
+              <PaperPlane className="w-4 h-4 text-violet-400" />
               <h3 className="text-xs font-bold uppercase tracking-wider text-white font-outfit">Outbound GTM Recommendation</h3>
             </div>
             <div className="bg-zinc-900/20 border border-zinc-900 rounded-xl p-4.5 space-y-3.5 text-xs">
@@ -377,7 +377,7 @@ ${promptText ? `[Note: Custom instruction: "${promptText}"]` : ""}`;
           <div className="border-t border-zinc-900 pt-6 space-y-4">
             <div className="flex items-center justify-between pb-2 border-b border-zinc-900">
               <div className="flex items-center space-x-2 text-zinc-350">
-                <Sparkles className="w-4 h-4 text-violet-400 animate-pulse" />
+                <Sparkle className="w-4 h-4 text-violet-400 animate-pulse" />
                 <h3 className="text-xs font-bold uppercase tracking-wider text-white font-outfit">AI Outreach Copilot</h3>
               </div>
               <div className="flex items-center space-x-1">
@@ -410,7 +410,7 @@ ${promptText ? `[Note: Custom instruction: "${promptText}"]` : ""}`;
                           : "bg-zinc-950 border-zinc-900 text-zinc-550 hover:border-zinc-800 hover:text-zinc-300"
                       }`}
                     >
-                      <Send className="w-3.5 h-3.5" />
+                      <PaperPlane className="w-3.5 h-3.5" />
                       <span>Email</span>
                     </button>
                     <button
@@ -421,7 +421,7 @@ ${promptText ? `[Note: Custom instruction: "${promptText}"]` : ""}`;
                           : "bg-zinc-950 border-zinc-900 text-zinc-550 hover:border-zinc-800 hover:text-zinc-300"
                       }`}
                     >
-                      <MessageSquare className="w-3.5 h-3.5" />
+                      <Chat className="w-3.5 h-3.5" />
                       <span>LinkedIn</span>
                     </button>
                     <button
@@ -474,7 +474,7 @@ ${promptText ? `[Note: Custom instruction: "${promptText}"]` : ""}`;
                 {/* Rate limit warning */}
                 {credits <= 0 && (
                   <div className="p-3 bg-amber-955/20 border border-amber-900/30 text-amber-500 rounded-xl flex items-start space-x-2.5 text-xs leading-normal">
-                    <Zap className="w-4 h-4 text-amber-500 shrink-0 mt-0.5 animate-pulse" />
+                    <Lightning className="w-4 h-4 text-amber-500 shrink-0 mt-0.5 animate-pulse" />
                     <span>Rate limit exceeded (5 requests/min). AI quota resets in 15 seconds. Please wait or upgrade.</span>
                   </div>
                 )}
@@ -486,9 +486,9 @@ ${promptText ? `[Note: Custom instruction: "${promptText}"]` : ""}`;
                   className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-40 disabled:hover:bg-violet-600 text-white font-semibold text-xs py-3 rounded-xl flex items-center justify-center space-x-2 transition shadow-lg shadow-violet-600/10 font-outfit cursor-pointer disabled:cursor-not-allowed"
                 >
                   {isGenerating ? (
-                    <Loader2 className="w-4 h-4 shrink-0 animate-spin" />
+                    <CircleNotch className="w-4 h-4 shrink-0 animate-spin" />
                   ) : (
-                    <Sparkles className="w-4 h-4 shrink-0" />
+                    <Sparkle className="w-4 h-4 shrink-0" />
                   )}
                   <span>{isGenerating ? "AI Outreach Agent working..." : "Generate AI Outreach Copy"}</span>
                 </button>
@@ -496,7 +496,7 @@ ${promptText ? `[Note: Custom instruction: "${promptText}"]` : ""}`;
                 {/* Simulated Agent progress */}
                 {isGenerating && (
                   <div className="p-4 bg-zinc-950 border border-zinc-900 rounded-xl flex items-center space-x-3 text-xs text-zinc-400">
-                    <Loader2 className="w-4 h-4 text-violet-500 animate-spin shrink-0" />
+                    <CircleNotch className="w-4 h-4 text-violet-500 animate-spin shrink-0" />
                     <span className="animate-pulse font-medium">{loadingStep}</span>
                   </div>
                 )}

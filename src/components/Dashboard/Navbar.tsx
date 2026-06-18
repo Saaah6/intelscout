@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useSignalScout } from "@/context/SignalScoutContext";
-import { Circle, Radio, Menu, Shield } from "lucide-react";
+import { List, Shield } from "@phosphor-icons/react";
 
 interface NavbarProps {
   activeTab: string;
@@ -33,7 +33,7 @@ export default function Navbar({ activeTab, setSidebarCollapsed, sidebarCollapse
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
           className="p-1.5 hover:bg-zinc-900 rounded-lg text-zinc-500 hover:text-zinc-300 md:hidden transition"
         >
-          <Menu className="w-5 h-5" />
+          <List className="w-5 h-5" />
         </button>
         <div>
           <h1 className="text-sm font-bold tracking-tight text-white font-outfit">{getTitle()}</h1>

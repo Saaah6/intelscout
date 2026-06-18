@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useSignalScout } from "@/context/SignalScoutContext";
-import { BarChart3, PieChart, Radio, TrendingUp } from "lucide-react";
+import { ChartBar, ChartPie, Radio, TrendUp } from "@phosphor-icons/react";
 
 export default function AnalyticsCharts() {
   const { accounts, signals, feedEvents, lastSignalAt } = useSignalScout();
@@ -75,7 +75,7 @@ export default function AnalyticsCharts() {
 
   const emptyState = (
     <div className="flex-1 flex flex-col items-center justify-center py-12 text-center opacity-40">
-      <TrendingUp className="w-7 h-7 text-zinc-500 mb-2" />
+      <TrendUp className="w-7 h-7 text-zinc-500 mb-2" />
       <p className="text-xs text-zinc-500">Import accounts to populate charts</p>
     </div>
   );
@@ -87,7 +87,7 @@ export default function AnalyticsCharts() {
       <div className={`bg-zinc-900/40 border rounded-xl p-5 shadow-lg flex flex-col transition-all duration-500 ${pulsing ? "border-violet-500/40 shadow-violet-500/10" : "border-zinc-900 hover:border-zinc-800"}`}>
         <div className="flex items-center justify-between mb-3 border-b border-zinc-850/60 pb-3">
           <div className="flex items-center space-x-2">
-            <BarChart3 className="w-4 h-4 text-violet-400" />
+            <ChartBar className="w-4 h-4 text-violet-400" />
             <h3 className="text-xs font-bold text-white uppercase tracking-wider font-outfit">Score Distribution</h3>
           </div>
           {accounts.length > 0 && (
@@ -160,7 +160,7 @@ export default function AnalyticsCharts() {
       {/* ── Chart 2: Top Tech Stack ── */}
       <div className="bg-zinc-900/40 border border-zinc-900 rounded-xl p-5 hover:border-zinc-800 transition shadow-lg flex flex-col">
         <div className="flex items-center space-x-2 mb-4 border-b border-zinc-850/60 pb-3">
-          <PieChart className="w-4 h-4 text-violet-400" />
+          <ChartPie className="w-4 h-4 text-violet-400" />
           <h3 className="text-xs font-bold text-white uppercase tracking-wider font-outfit">Tech Stack Matches</h3>
         </div>
 
