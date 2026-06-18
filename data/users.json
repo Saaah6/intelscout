@@ -1,0 +1,20 @@
+[
+  {
+    "email": "test_google_user@example.com",
+    "name": "Test Google User",
+    "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=test_google_user%40example.com",
+    "createdAt": "2026-06-18T11:03:19.870Z"
+  },
+  {
+    "email": "marcus.sales@gmail.com",
+    "name": "Marcus Johnson",
+    "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=Marcus",
+    "createdAt": "2026-06-18T11:06:40.813Z"
+  },
+  {
+    "email": "sarah.ops@gmail.com",
+    "name": "Sarah Chen",
+    "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=Sarah",
+    "createdAt": "2026-06-18T11:18:45.361Z"
+  }
+]

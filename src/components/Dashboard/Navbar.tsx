@@ -19,6 +19,7 @@ export default function Navbar({ activeTab, setSidebarCollapsed, sidebarCollapse
       case "accounts": return "Accounts Prioritization Engine";
       case "signals": return "Dynamic Signal Configurations";
       case "feed": return "GTM Intelligence Feed";
+      case "audience": return "Audience & Auth Logs";
       default: return "Dashboard";
     }
   };

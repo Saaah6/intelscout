@@ -9,6 +9,7 @@ import AccountsTable from "./AccountsTable";
 import CompanyDetailsDrawer from "./CompanyDetailsDrawer";
 import IntelligenceFeed from "./IntelligenceFeed";
 import SettingsPanel from "./SettingsPanel";
+import AudiencePanel from "./AudiencePanel";
 import { Account, useSignalScout } from "@/context/SignalScoutContext";
 import { AnimatePresence } from "framer-motion";
 import { Sparkles } from "lucide-react";
@@ -97,6 +98,12 @@ export default function DashboardLayout() {
                 </ul>
               </div>
             </div>
+          </div>
+        );
+      case "audience":
+        return (
+          <div className="flex-1 flex flex-col h-full items-center">
+            <AudiencePanel />
           </div>
         );
       default:

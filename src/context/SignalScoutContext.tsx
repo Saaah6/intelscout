@@ -128,6 +128,11 @@ interface SignalScoutContextType {
   credits: number;
   setCredits: (c: number) => void;
   lastSignalAt: number; // Unix ms timestamp of last fired signal — used by charts to pulse
+  user: { email: string; name: string; avatar: string } | null;
+  isAuthenticated: boolean;
+  isAuthLoading: boolean;
+  loginWithGoogle: (email: string, name: string, avatar?: string) => Promise<void>;
+  logout: () => void;
 }
 
 const SignalScoutContext = createContext<SignalScoutContextType | undefined>(undefined);
@@ -179,6 +184,66 @@ export const SignalScoutProvider = ({ children }: { children: ReactNode }) => {
   const [userRole, setUserRole] = useState<UserRole>("admin");
   const [credits, setCredits] = useState<number>(5);
   const [lastSignalAt, setLastSignalAt] = useState<number>(0);
+
+  const [user, setUser] = useState<{ email: string; name: string; avatar: string } | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isAuthLoading, setIsAuthLoading] = useState<boolean>(true);
+
+  // Load auth state from localStorage on mount
+  useEffect(() => {
+    const savedUser = localStorage.getItem("signalscout_user");
+    if (savedUser) {
+      try {
+        const parsed = JSON.parse(savedUser);
+        setUser(parsed);
+        setIsAuthenticated(true);
+      } catch (e) {
+        console.error("Failed to parse saved user state", e);
+      }
+    }
+    setIsAuthLoading(false);
+  }, []);
+
+  const loginWithGoogle = useCallback(async (email: string, name: string, avatar?: string) => {
+    setIsAuthLoading(true);
+    try {
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, name, avatar }),
+      });
+      const data = await response.json();
+      if (data.success && data.user) {
+        setUser(data.user);
+        setIsAuthenticated(true);
+        localStorage.setItem("signalscout_user", JSON.stringify(data.user));
+      } else {
+        throw new Error(data.error || "Failed to register user");
+      }
+    } catch (err) {
+      console.error("Authentication error:", err);
+      // Fallback: login client-side anyway if server is unreachable
+      const fallbackUser = {
+        email,
+        name,
+        avatar: avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}`,
+        createdAt: new Date().toISOString()
+      };
+      setUser(fallbackUser);
+      setIsAuthenticated(true);
+      localStorage.setItem("signalscout_user", JSON.stringify(fallbackUser));
+    } finally {
+      setIsAuthLoading(false);
+    }
+  }, []);
+
+  const logout = useCallback(() => {
+    setUser(null);
+    setIsAuthenticated(false);
+    localStorage.removeItem("signalscout_user");
+  }, []);
 
   // Credit refill loop for simulated AI Rate Limiting
   useEffect(() => {
@@ -526,7 +591,12 @@ export const SignalScoutProvider = ({ children }: { children: ReactNode }) => {
         setUserRole,
         credits,
         setCredits,
-        lastSignalAt
+        lastSignalAt,
+        user,
+        isAuthenticated,
+        isAuthLoading,
+        loginWithGoogle,
+        logout
       }}
     >
       {children}

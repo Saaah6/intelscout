@@ -9,7 +9,8 @@ import Stage4Weights from "@/components/Onboarding/Stage4Weights";
 import Stage5Import from "@/components/Onboarding/Stage5Import";
 import ResearchEngine from "@/components/Onboarding/ResearchEngine";
 import DashboardLayout from "@/components/Dashboard/DashboardLayout";
-import { Target, CheckCircle2 } from "lucide-react";
+import LandingPage from "@/components/LandingPage";
+import { Target } from "@phosphor-icons/react";
 
 function OnboardingSteps() {
   const { step } = useSignalScout();
@@ -50,7 +51,7 @@ function OnboardingSteps() {
           <Target className="w-6 h-6 animate-pulse" />
           <span className="font-extrabold text-lg tracking-wider font-outfit uppercase">SignalScout AI</span>
         </div>
-        <h1 className="text-xl font-bold text-white mb-4 font-outfit">Campaign Configuration</h1>
+        <h1 className="text-xl font-bold text-white mb-4 font-outfit">Campaign Campaign Configuration</h1>
         
         {/* Progress bar dots */}
         <div className="flex items-center space-x-2 w-full max-w-sm mt-2">
@@ -79,7 +80,22 @@ function OnboardingSteps() {
 }
 
 function MainAppContent() {
-  const { step } = useSignalScout();
+  const { step, isAuthenticated, isAuthLoading } = useSignalScout();
+
+  if (isAuthLoading) {
+    return (
+      <div className="min-h-screen bg-zinc-950 flex flex-col justify-center items-center p-6 font-sans">
+        <div className="flex flex-col items-center space-y-3">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-500"></div>
+          <span className="text-zinc-500 text-xs font-semibold">Initializing SignalScout Engine...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <LandingPage />;
+  }
 
   if (step === "research") {
     return (
