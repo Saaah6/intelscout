@@ -93,8 +93,26 @@ export default function LandingPage() {
     setShowGooglePopup(false);
   };
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "IntelScout AI",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "description": "Real-time AI crawler, technographics parser, and account qualification scoring engine for enterprise GTM teams.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col relative overflow-hidden font-sans select-none">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       
       {/* Background Decorative Blurs */}
       <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-violet-600/10 rounded-full blur-[140px] pointer-events-none" />
@@ -111,6 +129,12 @@ export default function LandingPage() {
             IntelScout <span className="text-violet-400">AI</span>
           </span>
         </div>
+
+        <nav className="hidden md:flex items-center space-x-6 text-[10px] uppercase tracking-wider font-bold text-zinc-400">
+          <a href="#features" className="hover:text-violet-400 transition">Features</a>
+          <a href="#how-it-works" className="hover:text-violet-400 transition">How It Works</a>
+          <a href="#newsletter" className="hover:text-violet-400 transition">GTM Digest</a>
+        </nav>
 
         <button 
           onClick={() => setShowGooglePopup(true)}
@@ -158,7 +182,7 @@ export default function LandingPage() {
         </div>
 
         {/* Mock Graphic Visualizer Card */}
-        <div className="mt-14 w-full max-w-4xl bg-zinc-900/40 border border-zinc-900 rounded-2xl p-5 relative overflow-hidden backdrop-blur-sm shadow-2xl">
+        <div id="how-it-works" className="mt-14 w-full max-w-4xl bg-zinc-900/40 border border-zinc-900 rounded-2xl p-5 relative overflow-hidden backdrop-blur-sm shadow-2xl">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-violet-600 to-indigo-600" />
           <div className="flex items-center justify-between border-b border-zinc-850/60 pb-3 mb-4 text-left">
             <div className="flex items-center space-x-2">
@@ -198,7 +222,7 @@ export default function LandingPage() {
         </div>
 
         {/* Feature Grid */}
-        <section className="mt-28 grid grid-cols-1 md:grid-cols-3 gap-8 text-left w-full">
+        <section id="features" className="mt-28 grid grid-cols-1 md:grid-cols-3 gap-8 text-left w-full">
           <div className="bg-zinc-900/30 border border-zinc-900/50 rounded-2xl p-6 hover:border-zinc-850 transition duration-300">
             <div className="w-10 h-10 rounded-xl bg-violet-950/30 border border-violet-900/40 text-violet-400 flex items-center justify-center mb-5">
               <Cpu className="w-5 h-5" />
@@ -229,7 +253,7 @@ export default function LandingPage() {
         </section>
 
         {/* Newsletter Section */}
-        <section className="mt-32 w-full max-w-xl">
+        <section id="newsletter" className="mt-32 w-full max-w-xl">
           <div className="bg-gradient-to-b from-zinc-900/50 to-zinc-950 border border-zinc-900 rounded-3xl p-8 relative overflow-hidden backdrop-blur-sm">
             <div className="absolute top-0 right-0 p-6 opacity-[0.02] text-violet-400 pointer-events-none">
               <EnvelopeSimple className="w-40 h-40" />
@@ -303,8 +327,18 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t border-zinc-900/60 py-6 text-center text-[10px] text-zinc-600 font-medium z-20">
-        &copy; {new Date().getFullYear()} IntelScout AI Inc. All rights reserved.
+      <footer className="w-full border-t border-zinc-900/60 py-8 text-center text-xs text-zinc-500 font-medium z-20 bg-zinc-950/80">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="text-[10px] text-zinc-650">
+            &copy; {new Date().getFullYear()} IntelScout AI Inc. All rights reserved.
+          </div>
+          <div className="flex space-x-6 text-[10px] uppercase tracking-wider font-bold">
+            <a href="#features" className="hover:text-violet-400 transition">Features</a>
+            <a href="#how-it-works" className="hover:text-violet-400 transition">How It Works</a>
+            <a href="#newsletter" className="hover:text-violet-400 transition">Subscribe</a>
+            <a href="/api/newsletter/subscribers" className="hover:text-violet-400 transition">Subscribers API</a>
+          </div>
+        </div>
       </footer>
 
       {/* Google Account Selector Dialog (High Fidelity Popup Simulation) */}
