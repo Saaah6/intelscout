@@ -53,24 +53,24 @@ export default function NewsletterSection() {
             Weekly B2B signal crawling techniques, qualification frameworks, and outbound strategies. No spam.
           </p>
 
-          <form onSubmit={handleNewsletterSubmit} className="relative flex w-full max-w-md mx-auto items-center mt-8 bg-white/80 backdrop-blur-md border border-black/10 rounded-full p-1.5 shadow-sm hover:shadow-md hover:border-black/30 transition-all duration-300">
+          <form onSubmit={handleNewsletterSubmit} className="flex flex-col md:flex-row items-center justify-center gap-4 mx-auto w-full max-w-[700px] mt-8">
             <input
               type="email"
               placeholder="Enter your work email"
               value={email}
               disabled={newsletterSubmitting || newsletterSuccess}
               onChange={onEmailChange}
-              className="flex-1 h-11 px-5 rounded-full text-sm font-roboto text-black placeholder-[#888] bg-transparent focus:outline-none"
+              className="w-full md:flex-1 md:max-w-[520px] h-14 px-6 rounded-full text-base font-roboto text-black placeholder-[#888] bg-white border border-black/15 shadow-sm focus:border-black/40 focus:outline-none transition-all duration-300"
             />
             <button
               type="submit"
               disabled={newsletterSubmitting || newsletterSuccess}
-              className="h-11 px-8 bg-black hover:bg-[#222] text-white font-bold text-sm rounded-full transition-all duration-200 flex items-center justify-center gap-2 shrink-0 disabled:opacity-50 font-roboto"
+              className="w-full md:w-[160px] h-14 bg-black hover:bg-[#222] text-white font-bold text-base rounded-full transition-all duration-200 flex items-center justify-center gap-2 shrink-0 disabled:opacity-50 font-roboto shadow-sm hover:shadow-md"
             >
               {newsletterSubmitting ? (
-                <CircleNotch className="w-4 h-4 animate-spin" />
+                <CircleNotch className="w-5 h-5 animate-spin" />
               ) : newsletterSuccess ? (
-                <><CheckCircle className="w-4 h-4 text-emerald-400" /> Subscribed</>
+                <><CheckCircle className="w-5 h-5 text-emerald-400" /> Subscribed</>
               ) : "Subscribe"}
             </button>
           </form>
