@@ -222,7 +222,7 @@ function ScrollStep({ step, index, activeStep, onStepEnter }: { step: any, index
   }, [isInView, index, onStepEnter]);
 
   return (
-    <div ref={ref} className="py-[15vh] md:py-[20vh] flex flex-col justify-center">
+    <div ref={ref} className="py-16 md:py-24 flex flex-col justify-center">
       <div className={`w-full text-left transition-all duration-700 ${activeStep === index ? "opacity-100" : "opacity-20"}`}>
         <div className="flex items-start gap-6">
           <span className={`font-black text-3xl font-roboto shrink-0 transition-colors duration-500 ${activeStep === index ? "text-white" : "text-[#555]"}`}>
@@ -405,7 +405,7 @@ export default function LandingPage() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 relative items-start">
-            <div className="pb-[20vh] pt-[10vh]">
+            <div className="pb-32 pt-8">
               {STEPS.map((step, idx) => (
                 <ScrollStep 
                   key={step.roman} 
