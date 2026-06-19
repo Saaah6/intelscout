@@ -40,44 +40,46 @@ export default function NewsletterSection() {
   return (
     <section id="newsletter" className="relative py-24 lg:py-32 bg-transparent overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-14">
-        <div className="max-w-2xl mx-auto text-center flex flex-col items-center justify-center">
+        <div className="max-w-[700px] mx-auto text-center flex flex-col items-center justify-center">
           <span className="inline-flex flex-wrap justify-center items-center gap-3 text-sm font-roboto-mono text-[#888888] mb-6">
             <span className="w-8 h-px bg-black/25 inline-block" />
             <span className="text-center">GTM Intelligence Digest</span>
             <span className="w-8 h-px bg-black/25 inline-block" />
           </span>
-          <motion.h2 {...FADE_UP} className="text-4xl lg:text-6xl font-black tracking-tight font-roboto mb-6 leading-tight text-black text-center w-full">
+          <motion.h2 {...FADE_UP} className="text-4xl lg:text-6xl font-black tracking-tight font-roboto mb-4 leading-tight text-black text-center w-full">
             Join the GTM<br className="hidden sm:block" /> Intelligence Circle
           </motion.h2>
-          <p className="text-lg sm:text-xl text-[#555555] leading-relaxed mb-10 font-normal text-center max-w-lg mx-auto">
+          <p className="text-lg sm:text-xl text-[#555555] leading-relaxed mb-7 font-normal text-center w-full max-w-lg mx-auto">
             Weekly B2B signal crawling techniques, qualification frameworks, and outbound strategies. No spam.
           </p>
 
-          <form onSubmit={handleNewsletterSubmit} className="flex flex-col md:flex-row items-center justify-center gap-4 mx-auto w-full max-w-[700px] mt-8">
-            <input
-              type="email"
-              placeholder="Enter your work email"
-              value={email}
-              disabled={newsletterSubmitting || newsletterSuccess}
-              onChange={onEmailChange}
-              className="w-full md:flex-1 md:max-w-[520px] h-14 px-6 rounded-full text-base font-roboto text-black placeholder-[#888] bg-white border border-black/15 shadow-sm focus:border-black/40 focus:outline-none transition-all duration-300"
-            />
-            <button
-              type="submit"
-              disabled={newsletterSubmitting || newsletterSuccess}
-              className="w-full md:w-[160px] h-14 bg-black hover:bg-[#222] text-white font-bold text-base rounded-full transition-all duration-200 flex items-center justify-center gap-2 shrink-0 disabled:opacity-50 font-roboto shadow-sm hover:shadow-md"
-            >
-              {newsletterSubmitting ? (
-                <CircleNotch className="w-5 h-5 animate-spin" />
-              ) : newsletterSuccess ? (
-                <><CheckCircle className="w-5 h-5 text-emerald-400" /> Subscribed</>
-              ) : "Subscribe"}
-            </button>
-          </form>
+          <div className="w-full bg-[#fafafa] border border-black/5 rounded-[24px] p-5 md:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-shadow hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col md:flex-row items-center justify-center gap-3 w-full">
+              <input
+                type="email"
+                placeholder="Enter your work email"
+                value={email}
+                disabled={newsletterSubmitting || newsletterSuccess}
+                onChange={onEmailChange}
+                className="w-full md:flex-1 h-14 px-5 rounded-2xl text-base font-roboto text-black placeholder-[#777] bg-white border border-black/5 shadow-sm focus:border-black/20 focus:ring-4 focus:ring-black/5 focus:outline-none transition-all duration-300"
+              />
+              <button
+                type="submit"
+                disabled={newsletterSubmitting || newsletterSuccess}
+                className="w-full md:w-[160px] h-14 bg-black hover:bg-[#222] hover:-translate-y-0.5 text-white font-bold text-base rounded-2xl transition-all duration-200 flex items-center justify-center gap-2 shrink-0 disabled:opacity-50 font-roboto shadow-md"
+              >
+                {newsletterSubmitting ? (
+                  <CircleNotch className="w-5 h-5 animate-spin" />
+                ) : newsletterSuccess ? (
+                  <><CheckCircle className="w-5 h-5 text-emerald-400" /> Subscribed</>
+                ) : "Subscribe"}
+              </button>
+            </form>
+            {newsletterError && <p className="text-sm text-red-500 mt-3 font-roboto text-left px-2">{newsletterError}</p>}
+          </div>
 
-          {newsletterError && <p className="text-sm text-red-500 mt-3 font-roboto w-full text-center">{newsletterError}</p>}
-          <p className="text-xs text-[#aaaaaa] mt-8 font-roboto-mono tracking-widest uppercase text-center w-full">
-            1,200+ revenue leaders · monthly
+          <p className="text-[13px] text-[#888888] font-medium mt-5 font-roboto tracking-wide text-center w-full">
+            Join 1,200+ revenue leaders receiving weekly GTM intelligence.
           </p>
         </div>
       </div>
