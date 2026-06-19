@@ -51,8 +51,8 @@ export default function NewsletterSection() {
         <div className="max-w-[600px] mx-auto text-center flex flex-col items-center justify-center">
           
           {/* Premium pill badge */}
-          <div className="inline-flex items-center justify-center h-7 px-3.5 rounded-full border border-black/10 bg-white shadow-sm text-[10px] font-bold text-[#444] tracking-[0.2em] uppercase mb-6 font-mono">
-            Weekly Intelligence
+          <div className="inline-flex items-center justify-center h-[26px] px-3 rounded-full border border-black/10 bg-white text-[12px] font-medium text-[#444] mb-6 font-roboto shadow-[0_2px_4px_-1px_rgba(0,0,0,0.02)] gap-1.5">
+            <span className="text-[#888] text-[10px]">⚡</span> Weekly GTM Intelligence
           </div>
           
           <motion.h2 {...FADE_UP} className="text-4xl lg:text-5xl font-black tracking-tight font-roboto mb-5 leading-[1.1] text-black text-center w-full">
