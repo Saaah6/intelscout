@@ -22,5 +22,11 @@
     "name": "sahil koul",
     "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=sahil%20koul",
     "createdAt": "2026-06-18T15:30:30.960Z"
+  },
+  {
+    "email": "test@test.com",
+    "name": "test",
+    "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=test%40test.com",
+    "createdAt": "2026-06-19T13:18:32.738Z"
   }
 ]

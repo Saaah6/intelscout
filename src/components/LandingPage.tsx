@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useIntelScout } from "@/context/IntelScoutContext";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, CheckCircle, CircleNotch, X } from "@phosphor-icons/react";
+import { ArrowRight, CheckCircle, CircleNotch, X, GoogleLogo } from "@phosphor-icons/react";
 import AnimatedLogo from "./AnimatedLogo";
 
 // ── Static data ────────────────────────────────────────────────────
@@ -140,8 +140,14 @@ export default function LandingPage() {
     if (!authEmail) return;
     setLoginSubmitting(true);
     await loginWithEmail(authEmail, authEmail.split("@")[0]);
-    // It will automatically redirect when user state updates
+    setLoginSubmitting(false);
   }, [authEmail, loginWithEmail]);
+
+  const handleGoogleLogin = useCallback(async () => {
+    setLoginSubmitting(true);
+    await loginWithEmail("demo@google.com", "Google User");
+    setLoginSubmitting(false);
+  }, [loginWithEmail]);
 
   const handleNewsletterSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
@@ -183,17 +189,19 @@ export default function LandingPage() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white" style={{ borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
         <nav className="relative max-w-[1400px] mx-auto px-8 lg:px-14 flex items-center justify-between" style={{ height: 68 }}>
           {/* Logo — left */}
-          <AnimatedLogo className="w-5 h-5" showText={true} />
+          <div className="flex-1">
+            <AnimatedLogo className="w-5 h-5" showText={true} />
+          </div>
 
           {/* Nav links — perfectly centred */}
-          <div className="hidden md:flex items-center gap-12 absolute left-1/2 -translate-x-1/2">
+          <div className="hidden md:flex items-center justify-center gap-12 flex-1">
             <NavLink href="#features">Features</NavLink>
             <NavLink href="#how-it-works">How it works</NavLink>
             <NavLink href="#newsletter">GTM Digest</NavLink>
           </div>
 
           {/* Right */}
-          <div className="flex items-center gap-5">
+          <div className="flex items-center justify-end gap-5 flex-1">
             <button onClick={openAuth} className="text-sm font-medium text-[#333333] hover:text-black transition-colors duration-200 font-roboto hidden md:block">
               Sign in
             </button>
@@ -397,20 +405,20 @@ export default function LandingPage() {
               Weekly B2B signal crawling techniques, qualification frameworks, and outbound strategies. No spam.
             </p>
 
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 items-center justify-center mt-8">
               <input
                 type="email"
                 placeholder="Work email"
                 value={email}
                 disabled={newsletterSubmitting || newsletterSuccess}
                 onChange={onEmailChange}
-                className="flex-1 h-12 px-4 rounded-full text-sm font-roboto text-black placeholder-[#aaaaaa] bg-white transition focus:outline-none"
+                className="w-full sm:w-[320px] h-12 px-5 rounded-full text-sm font-roboto text-black placeholder-[#aaaaaa] bg-white transition focus:outline-none"
                 style={{ border: "1.5px solid rgba(0,0,0,0.15)" }}
               />
               <button
                 type="submit"
                 disabled={newsletterSubmitting || newsletterSuccess}
-                className="h-12 px-6 bg-black hover:bg-[#1a1a1a] text-white font-bold text-sm rounded-full transition-all duration-200 flex items-center justify-center gap-2 shrink-0 disabled:opacity-50 font-roboto"
+                className="h-12 px-8 bg-black hover:bg-[#1a1a1a] text-white font-bold text-sm rounded-full transition-all duration-200 flex items-center justify-center gap-2 shrink-0 disabled:opacity-50 font-roboto"
               >
                 {newsletterSubmitting ? (
                   <CircleNotch className="w-4 h-4 animate-spin" />
@@ -476,6 +484,21 @@ export default function LandingPage() {
                   <p className="text-[11px] font-roboto-mono text-[#aaaaaa] uppercase tracking-widest text-center mb-5">
                     Sign in or create account
                   </p>
+
+                  <button
+                    type="button"
+                    onClick={handleGoogleLogin}
+                    className="w-full relative z-10 flex items-center justify-center gap-2 px-4 py-3.5 bg-white border border-black/10 hover:bg-black/5 text-black rounded-xl transition duration-200 font-bold text-sm font-roboto cursor-pointer"
+                  >
+                    <GoogleLogo className="w-5 h-5" weight="bold" />
+                    Continue with Google
+                  </button>
+
+                  <div className="flex items-center gap-3 my-4">
+                    <div className="h-px bg-black/10 flex-1" />
+                    <span className="text-[10px] uppercase font-roboto-mono text-[#aaaaaa]">OR</span>
+                    <div className="h-px bg-black/10 flex-1" />
+                  </div>
 
                   <div>
                     <label className="sr-only">Email address</label>
