@@ -163,14 +163,13 @@ export default function LandingPage() {
 
           <div className="mb-12">
             <h1
-              className="font-black leading-[0.88] tracking-tight font-roboto text-black"
-              style={{ fontSize: "clamp(3.5rem, 11vw, 9.5rem)" }}
+              className="font-black leading-[1.0] tracking-tight font-roboto text-black text-balance max-w-[1100px]"
+              style={{ fontSize: "clamp(3.5rem, 9vw, 8rem)" }}
             >
-              <span className="block animate-line-in" style={{ animationDelay: "350ms" }}>
-                Qualify B2B
+              <span className="animate-line-in inline" style={{ animationDelay: "350ms" }}>
+                Qualify B2B accounts to{" "}
               </span>
-              <span className="block">
-                accounts to{" "}
+              <span className="inline-block">
                 {heroVisible && <AnimatedWord word="win." delay={550} />}
               </span>
             </h1>
