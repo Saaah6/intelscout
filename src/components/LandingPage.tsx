@@ -236,7 +236,7 @@ export default function LandingPage() {
             </span>
             <motion.h2 {...FADE_UP} className="text-4xl lg:text-6xl font-black tracking-tight font-roboto leading-tight text-black">
               Everything you need.<br />
-              <span className="text-[#aaaaaa]">Nothing you don't.</span>
+              <span className="text-[#aaaaaa]">Nothing you don&apos;t.</span>
             </motion.h2>
           </div>
           <div>
