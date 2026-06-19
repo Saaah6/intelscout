@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowRight } from "@phosphor-icons/react";
 import AnimatedLogo from "./AnimatedLogo";
-import { motion } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 export const NavLink = React.memo(function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
@@ -12,8 +12,29 @@ export const NavLink = React.memo(function NavLink({ href, children }: { href: s
 });
 
 export default function Navbar({ onOpenAuth }: { onOpenAuth: () => void }) {
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (!previous) return;
+    if (latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
+
   return (
-    <div className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+    <motion.div 
+      variants={{
+        visible: { y: 0, opacity: 1 },
+        hidden: { y: "-150%", opacity: 0 }
+      }}
+      animate={hidden ? "hidden" : "visible"}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
+      className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none"
+    >
       <header className="w-full max-w-[1200px] pointer-events-auto bg-white/70 backdrop-blur-md border border-black/10 rounded-full shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] h-14 md:h-16 flex items-center justify-between px-6 transition-all">
         {/* Logo — left */}
         <div className="flex-1 min-w-max flex items-center">
@@ -41,6 +62,6 @@ export default function Navbar({ onOpenAuth }: { onOpenAuth: () => void }) {
           </motion.button>
         </div>
       </header>
-    </div>
+    </motion.div>
   );
 }
