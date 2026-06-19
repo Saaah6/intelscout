@@ -80,7 +80,7 @@ export default function ResearchEngine() {
   }, [accounts, setStep, setResearchProgress, clearConsoleLogs, addConsoleLog]);
 
   return (
-    <div className="w-full max-w-3xl bg-white border border-black/10 rounded-2xl p-6 shadow-sm relative overflow-hidden flex flex-col h-[520px]">
+    <div className="w-full max-w-3xl bg-white/40 backdrop-blur-2xl border border-white/60 rounded-3xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.1),inset_0_2px_4px_rgba(255,255,255,0.8),inset_0_-1px_2px_rgba(0,0,0,0.05)] relative overflow-hidden flex flex-col h-[520px]">
       <div className="absolute top-0 left-0 right-0 h-1 bg-black/10">
         <div 
           className="h-full bg-black transition-all duration-300"
@@ -102,7 +102,7 @@ export default function ResearchEngine() {
       </div>
 
       {/* Terminal Output */}
-      <div className="flex-1 bg-[#fafafa] border border-black/10 rounded-xl p-4 font-mono text-xs text-[#666] overflow-y-auto space-y-1.5 scrollbar-thin scrollbar-thumb-black/20 scrollbar-track-transparent">
+      <div className="flex-1 bg-white/50 backdrop-blur-md border border-black/5 rounded-2xl p-4 font-mono text-xs text-[#666] overflow-y-auto space-y-1.5 shadow-[inset_0_4px_15px_rgba(0,0,0,0.03)] scrollbar-thin scrollbar-thumb-black/20 scrollbar-track-transparent">
         {consoleLogs.map((log, index) => {
           let logColor = "text-[#666]";
           if (log.includes("[SCAN]")) logColor = "text-blue-600/90";
