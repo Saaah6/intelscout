@@ -212,7 +212,8 @@ const PanelOutreach = React.memo(function PanelOutreach() {
 
 function ScrollStep({ step, index, activeStep, onStepEnter }: { step: any, index: number, activeStep: number, onStepEnter: (i: number) => void }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "-30% 0px -30% 0px" });
+  // Trigger when element hits the middle 30% of the viewport
+  const isInView = useInView(ref, { margin: "-35% 0px -35% 0px" });
 
   useEffect(() => {
     if (isInView) {
@@ -221,8 +222,8 @@ function ScrollStep({ step, index, activeStep, onStepEnter }: { step: any, index
   }, [isInView, index, onStepEnter]);
 
   return (
-    <div ref={ref} className="pb-8 flex flex-col justify-center">
-      <div className={`w-full text-left transition-all duration-700 ${activeStep === index ? "opacity-100" : "opacity-30"}`}>
+    <div ref={ref} className="py-[15vh] md:py-[20vh] flex flex-col justify-center">
+      <div className={`w-full text-left transition-all duration-700 ${activeStep === index ? "opacity-100" : "opacity-20"}`}>
         <div className="flex items-start gap-6">
           <span className={`font-black text-3xl font-roboto shrink-0 transition-colors duration-500 ${activeStep === index ? "text-white" : "text-[#555]"}`}>
             {step.roman}
@@ -403,8 +404,8 @@ export default function LandingPage() {
             </motion.h2>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 relative">
-            <div className="pt-8 pb-16">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 relative items-start">
+            <div className="pb-[20vh] pt-[10vh]">
               {STEPS.map((step, idx) => (
                 <ScrollStep 
                   key={step.roman} 
