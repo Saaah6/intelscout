@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowRight } from "@phosphor-icons/react";
 import AnimatedLogo from "./AnimatedLogo";
 
-const NavLink = React.memo(function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+export const NavLink = React.memo(function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a href={href} className="text-sm font-medium text-[#333333] hover:text-black transition-colors duration-200 group relative font-roboto">
       {children}

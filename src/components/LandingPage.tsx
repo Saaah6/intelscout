@@ -5,7 +5,7 @@ import { useIntelScout } from "@/context/IntelScoutContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, CheckCircle, CircleNotch, X, GoogleLogo, WarningCircle } from "@phosphor-icons/react";
 import AnimatedLogo from "./AnimatedLogo";
-import Navbar from "./Navbar";
+import Navbar, { NavLink } from "./Navbar";
 import NewsletterSection from "./NewsletterSection";
 
 // ── Static data ────────────────────────────────────────────────────
