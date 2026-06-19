@@ -102,20 +102,41 @@ export default function ResearchEngine() {
       </div>
 
       {/* Terminal Output */}
-      <div className="flex-1 bg-white/50 backdrop-blur-md border border-black/5 rounded-2xl p-4 font-mono text-xs text-[#666] overflow-y-auto space-y-1.5 shadow-[inset_0_4px_15px_rgba(0,0,0,0.03)] scrollbar-thin scrollbar-thumb-black/20 scrollbar-track-transparent">
+      <div className="flex-1 bg-white/50 backdrop-blur-md border border-black/5 rounded-2xl p-4 font-mono text-[11px] leading-relaxed text-[#666] overflow-y-auto space-y-2 shadow-[inset_0_4px_15px_rgba(0,0,0,0.03)] scrollbar-thin scrollbar-thumb-black/20 scrollbar-track-transparent">
         {consoleLogs.map((log, index) => {
-          let logColor = "text-[#666]";
-          if (log.includes("[SCAN]")) logColor = "text-blue-600/90";
-          else if (log.includes("[TECH]")) logColor = "text-amber-600/90";
-          else if (log.includes("[JOBS]")) logColor = "text-violet-600/90";
-          else if (log.includes("[QUAL]")) logColor = "text-emerald-600/90";
-          else if (log.includes("[DONE]")) logColor = "text-[#222] font-semibold";
-          else if (log.includes("🎉")) logColor = "text-emerald-600 font-bold";
+          // Parse: [TIMESTAMP] [TAG] [DOMAIN] Message
+          const regex = /^(\[[^\]]+\])\s*(?:(\[[^\]]+\])\s*)?(?:(\[[^\]]+\])\s*)?(.*)$/;
+          const match = log.match(regex);
           
+          if (!match) {
+            return <p key={index} className="text-[#666]">{log}</p>;
+          }
+
+          const timestamp = match[1];
+          const tag = match[2];
+          const domain = match[3];
+          const message = match[4];
+
+          let tagColor = "text-[#666]";
+          if (tag) {
+            if (tag.includes("[SCAN]")) tagColor = "text-blue-500 font-bold";
+            else if (tag.includes("[TECH]")) tagColor = "text-amber-500 font-bold";
+            else if (tag.includes("[JOBS]")) tagColor = "text-violet-500 font-bold";
+            else if (tag.includes("[QUAL]")) tagColor = "text-emerald-500 font-bold";
+            else if (tag.includes("[DONE]")) tagColor = "text-[#111] font-bold";
+          }
+
+          let msgColor = "text-[#555]";
+          if (message.includes("🎉")) msgColor = "text-emerald-600 font-semibold";
+          else if (message.includes("Warning")) msgColor = "text-amber-600";
+
           return (
-            <p key={index} className={logColor}>
-              {log}
-            </p>
+            <div key={index} className="flex items-start gap-1.5 font-mono break-all sm:break-normal">
+              <span className="text-[#aaa] shrink-0">{timestamp}</span>
+              {tag && <span className={`${tagColor} shrink-0`}>{tag}</span>}
+              {domain && <span className="text-[#888] shrink-0">{domain}</span>}
+              <span className={msgColor}>{message}</span>
+            </div>
           );
         })}
       </div>
