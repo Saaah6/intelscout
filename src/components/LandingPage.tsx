@@ -283,11 +283,11 @@ export default function LandingPage() {
       <Navbar onOpenAuth={openAuth} />
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative min-h-[90dvh] lg:min-h-screen flex flex-col justify-center overflow-hidden pt-32 lg:pt-40 pb-16 lg:pb-24">
-        <div className="relative z-10 max-w-[1400px] mx-auto w-full px-6 md:px-12 xl:px-16 flex flex-col md:items-center xl:items-start text-left md:text-center xl:text-left">
+      <section className="relative overflow-hidden pt-32 lg:pt-48 pb-16 lg:pb-24">
+        <div className="relative z-10 max-w-[1100px] mx-auto w-full px-6 lg:px-8 flex flex-col md:items-center text-left md:text-center">
 
           {/* Eyebrow */}
-          <div className="animate-line-in mb-6 md:mb-8 w-full flex md:justify-center xl:justify-start" style={{ animationDelay: "200ms" }}>
+          <div className="animate-line-in mb-6 w-full flex md:justify-center" style={{ animationDelay: "200ms" }}>
             <span className="inline-flex items-center gap-3 text-[13px] md:text-sm font-roboto-mono text-[#888888]">
               <span className="w-6 md:w-8 h-px bg-black/25 inline-block" />
               The GTM intelligence platform
@@ -295,10 +295,10 @@ export default function LandingPage() {
           </div>
 
           {/* Headline */}
-          <div className="mb-8 md:mb-12 xl:mb-16 w-full max-w-[900px] xl:max-w-none mx-auto xl:mx-0">
+          <div className="mb-6 w-full">
             <h1
-              className="font-black font-roboto flex flex-col items-start md:items-center xl:items-start"
-              style={{ fontSize: "clamp(3rem, 10vw, 9.5rem)" }}
+              className="font-black font-roboto flex flex-col items-start md:items-center"
+              style={{ fontSize: "clamp(3rem, 9vw, 8.5rem)" }}
             >
               <span className="leading-[1] md:leading-[0.92] animate-line-in tracking-tight text-[#222]" style={{ animationDelay: "350ms" }}>
                 Qualify B2B
@@ -309,10 +309,10 @@ export default function LandingPage() {
             </h1>
           </div>
 
-          {/* Description & CTA Group */}
-          <div className="flex flex-col xl:flex-row gap-8 md:gap-10 xl:gap-20 xl:items-center w-full max-w-[700px] xl:max-w-none mx-auto xl:mx-0">
+          {/* Description & CTA Group tightly stacked */}
+          <div className="flex flex-col items-start md:items-center gap-6 md:gap-8 w-full max-w-[640px] mx-auto">
             <p
-              className="text-[17px] md:text-xl xl:text-2xl text-[#555] leading-relaxed max-w-[540px] xl:max-w-[600px] mx-auto xl:mx-0 font-normal animate-line-in"
+              className="text-[17px] md:text-xl text-[#555] leading-relaxed font-normal animate-line-in"
               style={{ animationDelay: "500ms" }}
             >
               IntelScout crawls target domains in real-time — tracking hiring signals,
@@ -320,19 +320,19 @@ export default function LandingPage() {
             </p>
 
             <div
-              className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-3 md:gap-4 w-full sm:w-auto animate-line-in shrink-0"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto animate-line-in"
               style={{ animationDelay: "620ms" }}
             >
               <button
                 onClick={openAuth}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-black hover:bg-[#1a1a1a] text-white font-bold text-[15px] md:text-base rounded-full px-8 h-12 md:h-14 transition-all duration-200 group font-roboto shadow-sm"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-black hover:bg-[#1a1a1a] text-white font-bold text-[15px] rounded-full px-6 h-12 transition-all duration-200 group font-roboto shadow-sm"
               >
                 Start free trial
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <a
                 href="#how-it-works"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 font-bold text-[15px] md:text-base rounded-full px-8 h-12 md:h-14 transition-all duration-200 font-roboto text-black hover:bg-black/5"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 font-bold text-[15px] rounded-full px-6 h-12 transition-all duration-200 font-roboto text-black hover:bg-black/5"
                 style={{ border: "1.5px solid rgba(0,0,0,0.12)" }}
               >
                 Watch demo
@@ -342,7 +342,7 @@ export default function LandingPage() {
         </div>
 
         {/* Marquee stats */}
-        <div className="w-full mt-24 md:mt-28 xl:mt-36 animate-line-in overflow-hidden border-y border-black/[0.04] bg-[#fafafa] py-10 relative z-10" style={{ animationDelay: "800ms" }}>
+        <div className="w-full mt-24 animate-line-in overflow-hidden border-y border-black/[0.04] bg-[#fafafa] py-8 relative z-10" style={{ animationDelay: "800ms" }}>
           <div className="flex gap-16 marquee whitespace-nowrap select-none">
             {MARQUEE_ITEMS.map((s, i) => (
               <div key={i} className="flex items-baseline gap-4 shrink-0">
@@ -362,14 +362,14 @@ export default function LandingPage() {
       </section>
 
       {/* ── Features ─────────────────────────────────────────────── */}
-      <section id="features" className="relative py-24 lg:py-32 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
-          <div className="mb-16 lg:mb-24">
+      <section id="features" className="relative py-24 bg-white">
+        <div className="max-w-[1100px] mx-auto px-6 lg:px-8">
+          <div className="mb-16">
             <span className="inline-flex items-center gap-3 text-sm font-roboto-mono text-[#888888] mb-6">
               <span className="w-8 h-px bg-black/25 inline-block" />
               Capabilities
             </span>
-            <motion.h2 {...FADE_UP} className="text-4xl lg:text-6xl font-black tracking-tight font-roboto leading-tight text-black">
+            <motion.h2 {...FADE_UP} className="text-4xl lg:text-5xl font-black tracking-tight font-roboto leading-[1.1] text-black">
               Everything you need.<br />
               <span className="text-[#aaaaaa]">Nothing you don&apos;t.</span>
             </motion.h2>
@@ -381,20 +381,20 @@ export default function LandingPage() {
       </section>
 
       {/* ── How it works — black section ─────────────────────────── */}
-      <section id="how-it-works" className="relative py-24 lg:py-32 bg-black text-white overflow-hidden">
+      <section id="how-it-works" className="relative py-24 bg-black text-white overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04] pointer-events-none"
           style={{ backgroundImage: "repeating-linear-gradient(-45deg, transparent, transparent 40px, white 40px, white 41px)" }}
         />
-        <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14">
-          <div className="mb-16 lg:mb-24">
+        <div className="relative z-10 max-w-[1100px] mx-auto px-6 lg:px-8">
+          <div className="mb-16">
             <span className="inline-flex items-center gap-3 text-sm font-roboto-mono text-[#888888] mb-6">
               <span className="w-8 h-px bg-white/30 inline-block" />
               Process
             </span>
             <motion.h2
               initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
-              className="text-4xl lg:text-6xl font-black tracking-tight font-roboto leading-tight"
+              className="text-4xl lg:text-5xl font-black tracking-tight font-roboto leading-[1.1]"
             >
               Three steps.<br />
               <span className="text-[#666666]">Infinite pipeline.</span>
