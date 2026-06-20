@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useIntelScout } from "@/context/IntelScoutContext";
-import { motion, AnimatePresence, useInView, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowRight, CheckCircle, Robot, Target, ShieldCheck } from "@phosphor-icons/react";
 import AnimatedLogo from "./AnimatedLogo";
 import Navbar, { NavLink } from "./Navbar";
@@ -292,22 +292,6 @@ export default function LandingPage() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [activeProcessStep, setActiveProcessStep] = useState(0);
 
-  const processRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: processRef,
-    offset: ["start start", "end end"]
-  });
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest < 0.33) {
-      if (activeProcessStep !== 0) setActiveProcessStep(0);
-    } else if (latest < 0.66) {
-      if (activeProcessStep !== 1) setActiveProcessStep(1);
-    } else {
-      if (activeProcessStep !== 2) setActiveProcessStep(2);
-    }
-  });
-
   useEffect(() => {
     console.log("[HMR] Scroll-story layout updated");
     const t = setTimeout(() => setHeroVisible(true), 100);
@@ -347,10 +331,11 @@ export default function LandingPage() {
       <section className="relative overflow-hidden pt-32 lg:pt-48 pb-16 lg:pb-24">
         <div className="relative z-10 max-w-[1100px] mx-auto w-full px-6 lg:px-8 flex flex-col md:items-center text-left md:text-center">
 
-          {/* Eyebrow Badge */}
+          {/* Eyebrow Text */}
           <div className="animate-line-in mb-6 w-full flex md:justify-center" style={{ animationDelay: "200ms" }}>
-            <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-black/[0.03] border border-black/10 text-[13px] font-medium text-[#444] font-roboto">
-              Signal Intelligence for Revenue Teams
+            <div className="text-sm font-roboto-mono text-[#888888] flex items-center gap-3">
+              <span className="w-8 h-px bg-black/20 dark:bg-white/30 inline-block" />
+              The GTM intelligence platform
             </div>
           </div>
 
@@ -447,28 +432,28 @@ export default function LandingPage() {
           style={{ backgroundImage: "repeating-linear-gradient(-45deg, transparent, transparent 40px, white 40px, white 41px)" }}
         />
         <div className="relative z-10 max-w-[1100px] mx-auto px-6 lg:px-8">
-          <div className="h-[300vh] relative" ref={processRef}>
-            <div className="sticky top-0 h-screen flex flex-col justify-center">
-              <div className="mb-16">
-                <span className="inline-flex items-center gap-3 text-sm font-roboto-mono text-[#888888] mb-6">
-                  <span className="w-8 h-px bg-white/30 inline-block" />
-                  Process
-                </span>
-                <motion.h2
-                  initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
-                  className="text-4xl lg:text-5xl font-black tracking-tight font-roboto leading-[1.1]"
-                >
-                  Three steps.<br />
-                  <span className="text-[#666666]">Infinite pipeline.</span>
-                </motion.h2>
-              </div>
+          <div className="mb-16">
+            <span className="inline-flex items-center gap-3 text-sm font-roboto-mono text-[#888888] mb-6">
+              <span className="w-8 h-px bg-white/30 inline-block" />
+              Process
+            </span>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
+              className="text-4xl lg:text-5xl font-black tracking-tight font-roboto leading-[1.1]"
+            >
+              Three steps.<br />
+              <span className="text-[#666666]">Infinite pipeline.</span>
+            </motion.h2>
+          </div>
 
-              <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                 <div className="flex flex-col">
                   {STEPS.map((step, idx) => (
                     <div 
                       key={step.roman} 
-                      className={`transition-all duration-500 cursor-default ${activeProcessStep === idx ? "py-6" : "py-3"}`}
+                      onMouseEnter={() => setActiveProcessStep(idx)}
+                      onClick={() => setActiveProcessStep(idx)}
+                      className="py-6 transition-all duration-500 cursor-pointer"
                     >
                       <div className={`w-full text-left transition-all duration-500 ${activeProcessStep === idx ? "opacity-100" : "opacity-30"}`}>
                         <div className="flex items-start gap-6">
@@ -476,20 +461,12 @@ export default function LandingPage() {
                             {step.roman}
                           </span>
                           <div className="flex-1">
-                            <h3 className={`text-2xl lg:text-3xl font-black transition-all duration-500 font-roboto ${activeProcessStep === idx ? "text-foreground translate-x-1 mb-3" : "text-foreground/60 mb-0"}`}>
+                            <h3 className={`text-2xl lg:text-3xl font-black mb-3 transition-all duration-500 font-roboto ${activeProcessStep === idx ? "text-foreground translate-x-1" : "text-foreground/60"}`}>
                               {step.title}
                             </h3>
-                            <div 
-                              className="overflow-hidden transition-all duration-500"
-                              style={{ 
-                                height: activeProcessStep === idx ? "auto" : 0,
-                                opacity: activeProcessStep === idx ? 1 : 0 
-                              }}
-                            >
-                              <p className="leading-relaxed font-normal font-roboto text-foreground/80 pb-2">
-                                {step.body}
-                              </p>
-                            </div>
+                            <p className={`leading-relaxed font-normal font-roboto transition-colors duration-500 ${activeProcessStep === idx ? "text-foreground/80" : "text-foreground/50"}`}>
+                              {step.body}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -504,9 +481,9 @@ export default function LandingPage() {
                     {activeProcessStep === 2 && <PanelOutreach key="panel2" />}
                   </AnimatePresence>
                 </div>
+                </div>
               </div>
             </div>
-          </div>
         </div>
       </section>
 
