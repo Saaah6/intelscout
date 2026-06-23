@@ -40,7 +40,7 @@ export default function Navbar({ onOpenAuth }: { onOpenAuth: () => void }) {
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none"
     >
-      <header className="w-full max-w-[1200px] pointer-events-auto bg-background/70 backdrop-blur-md border border-foreground/10 rounded-full shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] h-14 md:h-16 flex items-center justify-between px-6 transition-colors duration-300">
+      <header className="w-full max-w-[1100px] pointer-events-auto bg-background/70 backdrop-blur-md border border-foreground/10 rounded-full shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] h-14 md:h-16 flex items-center justify-between px-6 transition-colors duration-300">
         {/* Logo — left */}
         <div className="flex-1 min-w-max flex items-center">
           <AnimatedLogo className="w-5 h-5" showText={true} />

@@ -543,45 +543,47 @@ export default function LandingPage() {
       {/* ── Footer ────────────────────────────────────────────────── */}
       <footer className="pt-8 pb-8 bg-transparent transition-colors duration-300">
         <div className="w-full max-w-[1100px] mx-auto px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start gap-8 w-full">
-            
-            {/* Left Column: Product Identity */}
-            <div className="w-full md:max-w-sm">
-              <div className="flex items-center gap-2 mb-4">
-                <AnimatedLogo className="w-7 h-7 text-foreground" showText={false} />
-                <span className="text-lg font-black tracking-tight text-foreground font-roboto">IntelScout</span>
+          <div className="md:px-12">
+            <div className="flex flex-col md:flex-row justify-between items-start gap-8 w-full">
+              
+              {/* Left Column: Product Identity */}
+              <div className="w-full md:max-w-sm">
+                <div className="flex items-center gap-2 mb-4">
+                  <AnimatedLogo className="w-7 h-7 text-foreground" showText={false} />
+                  <span className="text-lg font-black tracking-tight text-foreground font-roboto">IntelScout</span>
+                </div>
+                <p className="text-sm text-foreground/60 font-roboto leading-relaxed mb-6">
+                  The autonomous scoring engine that maps real-time technographic and behavioral signals to your ideal customer profile.
+                </p>
+                <div className="flex items-center gap-2 text-xs font-mono text-foreground/50">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  Systems operational
+                </div>
               </div>
-              <p className="text-sm text-foreground/60 font-roboto leading-relaxed mb-6">
-                The autonomous scoring engine that maps real-time technographic and behavioral signals to your ideal customer profile.
-              </p>
-              <div className="flex items-center gap-2 text-xs font-mono text-foreground/50">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                Systems operational
-              </div>
-            </div>
 
-            {/* Right Column: Navigation */}
-            <div className="grid grid-cols-2 gap-8 md:gap-16 w-full md:w-auto">
-              <div>
-                <h4 className="font-bold text-foreground mb-5 text-sm">Product</h4>
-                <ul className="space-y-3 text-[13px] text-foreground/60 font-roboto">
-                  <li><a href="#features" className="hover:text-foreground transition">Signal Engine</a></li>
-                  <li><a href="#how-it-works" className="hover:text-foreground transition">Qualification</a></li>
-                  <li><a href="#" className="hover:text-foreground transition">Integrations</a></li>
-                  <li><a href="#" className="hover:text-foreground transition">Pricing</a></li>
-                </ul>
+              {/* Right Column: Navigation */}
+              <div className="grid grid-cols-2 gap-8 md:gap-16 w-full md:w-auto">
+                <div>
+                  <h4 className="font-bold text-foreground mb-5 text-sm">Product</h4>
+                  <ul className="space-y-3 text-[13px] text-foreground/60 font-roboto">
+                    <li><a href="#features" className="hover:text-foreground transition">Signal Engine</a></li>
+                    <li><a href="#how-it-works" className="hover:text-foreground transition">Qualification</a></li>
+                    <li><a href="#" className="hover:text-foreground transition">Integrations</a></li>
+                    <li><a href="#" className="hover:text-foreground transition">Pricing</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold text-foreground mb-5 text-sm">Company</h4>
+                  <ul className="space-y-3 text-[13px] text-foreground/60 font-roboto">
+                    <li><a href="#" className="hover:text-foreground transition">About</a></li>
+                    <li><a href="#" className="hover:text-foreground transition">Blog</a></li>
+                    <li><a href="#" className="hover:text-foreground transition">Careers</a></li>
+                    <li><a href="#" className="hover:text-foreground transition">Contact</a></li>
+                  </ul>
+                </div>
               </div>
-              <div>
-                <h4 className="font-bold text-foreground mb-5 text-sm">Company</h4>
-                <ul className="space-y-3 text-[13px] text-foreground/60 font-roboto">
-                  <li><a href="#" className="hover:text-foreground transition">About</a></li>
-                  <li><a href="#" className="hover:text-foreground transition">Blog</a></li>
-                  <li><a href="#" className="hover:text-foreground transition">Careers</a></li>
-                  <li><a href="#" className="hover:text-foreground transition">Contact</a></li>
-                </ul>
-              </div>
-            </div>
 
+            </div>
           </div>
 
           {/* Legal Info */}

@@ -123,7 +123,7 @@ export default function SettingsPanel() {
   );
 
   return (
-    <div className="bg-white border border-black/10 rounded-xl p-5 shadow-sm flex-1 flex flex-col overflow-hidden max-w-4xl mx-auto w-full">
+    <div className="bg-white border border-black/10 rounded-xl p-5 shadow-sm flex-1 flex flex-col overflow-hidden max-w-5xl mx-auto w-full">
       
       {/* Sales Read-only Banner */}
       {isSales && (

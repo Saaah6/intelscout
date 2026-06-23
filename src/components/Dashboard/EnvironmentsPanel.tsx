@@ -115,7 +115,7 @@ export default function EnvironmentsPanel() {
   };
 
   return (
-    <div className="bg-white border border-black/10 rounded-xl p-5 shadow-sm flex-1 flex flex-col overflow-hidden max-w-4xl mx-auto w-full">
+    <div className="bg-white border border-black/10 rounded-xl p-5 shadow-sm flex-1 flex flex-col overflow-hidden max-w-5xl mx-auto w-full">
       {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-black/10 mb-6">
         <div>

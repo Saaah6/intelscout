@@ -118,7 +118,7 @@ export default function Stage2ICP() {
   };
 
   return (
-    <div className="w-full max-w-4xl bg-white/80 backdrop-blur-md border border-black/10 rounded-2xl p-8 shadow-sm relative overflow-hidden">
+    <div className="w-full max-w-3xl bg-white/80 backdrop-blur-md border border-black/10 rounded-2xl p-8 lg:p-10 shadow-sm relative overflow-hidden">
       
       <div className="flex items-center justify-between mb-8 pb-4 border-b border-black/10">
         <div className="flex items-center space-x-3">

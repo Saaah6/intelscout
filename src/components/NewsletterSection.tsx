@@ -47,7 +47,7 @@ export default function NewsletterSection() {
       {/* Subtle radial background glow (monochrome) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-black/[0.04] blur-[120px] rounded-full pointer-events-none z-0" />
       
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-14 relative z-10">
+      <div className="max-w-[1100px] mx-auto px-6 lg:px-8 relative z-10">
         <div className="max-w-[600px] mx-auto text-center flex flex-col items-center justify-center">
           
           {/* Premium pill badge */}

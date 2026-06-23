@@ -54,7 +54,7 @@ export default function Stage1Offer() {
   };
 
   return (
-    <div className="w-full max-w-2xl bg-white/80 backdrop-blur-md border border-black/10 rounded-2xl p-8 shadow-sm relative overflow-hidden">
+    <div className="w-full max-w-3xl bg-white/80 backdrop-blur-md border border-black/10 rounded-2xl p-8 lg:p-10 shadow-sm relative overflow-hidden">
       
       <div className="flex items-center space-x-3 mb-6">
         <div className="p-2.5 bg-black/5 border border-black/10 text-[#111] rounded-xl">

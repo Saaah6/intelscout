@@ -68,7 +68,7 @@ function OnboardingSteps() {
       )}
 
       {/* Setup Steps Wizard Header */}
-      <div className="w-full max-w-xl flex flex-col items-center mb-8 text-center">
+      <div className="w-full max-w-3xl flex flex-col items-center mb-8 text-center">
         <div className="flex items-center justify-center mb-2 text-black">
           <AnimatedLogo className="w-6 h-6" showText={true} />
         </div>
